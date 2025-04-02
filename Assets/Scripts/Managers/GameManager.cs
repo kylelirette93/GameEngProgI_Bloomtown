@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     public GameStateManager GameStateManager;
     public UIManager UIManager;
     public LevelManager levelManager;
-    public QuestManager questManager;
     public SoundManager SoundManager;
     public DialogueManager dialogueManager;
     public PlayerMovement playerController;

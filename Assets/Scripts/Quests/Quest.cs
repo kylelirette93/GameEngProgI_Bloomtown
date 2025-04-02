@@ -2,27 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Expose fields in inspector.
-[System.Serializable]
-// Class to hold quest data.
 public class Quest
 {
-    // Quest data.
-    public string title;
-    public string description;
-    public int collected = 0;
-    public int condition = 3;
-    public int reward;
-    public bool isCompleted;
-    public bool isRecieved = false;
-    public ItemData requiredItem;
+    public QuestBase Base { get; private set; }
+    public QuestStatus Status { get; private set; }
 
-
-    public void CheckCompletion()
+    public Quest(QuestBase _base)
     {
-        if (collected == condition)
+        Base = _base;
+    }
+
+    public void StartQuest()
+    {
+        Status = QuestStatus.Started;
+        GameManager.Instance.dialogueManager.StartDialogue(Base.StartDialogue);
+    }
+
+    public void CompleteQuest()
+    {
+        Status = QuestStatus.Completed;
+        GameManager.Instance.dialogueManager.StartDialogue(Base.CompletedDialogue);
+
+        
+        if (Base.RequiredItem != null)
         {
-            isCompleted = true;
+            // Remove item from the inventory.
         }
     }
 }
+
+public enum QuestStatus { None, Started, Completed }

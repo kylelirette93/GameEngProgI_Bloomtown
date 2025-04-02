@@ -19,7 +19,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
     [Header("Dialogue Settings")]
     [TextArea] public string[] sentences;
-    public bool isQuestDialogue;
+    [TextArea] public string[] completedSentences;
 
     DialogueManager dialogueManager;
 
@@ -54,17 +54,8 @@ public class Interactable : MonoBehaviour, IInteractable
                 Nothing();
                 break;
             case InteractableType.Pickup:
-                // Check if pickup is required for a quest, if so display prompt.
-                if (GameManager.Instance.questManager.quests[itemData.questIndex].isRecieved
-                    && GameManager.Instance.questManager.quests[itemData.questIndex].requiredItem == itemData)
-                {
-                    Pickup();
-                }
-                else
-                {
-                    // If quest is not recieved yet, display info of the item instead.
-                    Info();
-                }
+                // Check if pickup is required for a quest, if so display prompt.               
+                Pickup();
                 break;
             case InteractableType.Info:
                 Info();
@@ -96,15 +87,11 @@ public class Interactable : MonoBehaviour, IInteractable
     {
         if (inventory != null)
         {
-            if (GameManager.Instance.questManager.quests[itemData.questIndex].isRecieved)
-            {
+            
                 inventory.AddItem(itemData);
-                GameManager.Instance.questManager.quests[itemData.questIndex].collected += 1;
-                GameManager.Instance.questManager.QuestUI.UpdateQuestList();
-
                 isPickedUp[itemId] = true;
                 gameObject.SetActive(false);
-            }
+            
         }
     }
 
