@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public SoundManager SoundManager;
     public DialogueManager dialogueManager;
     public PlayerMovement playerController;
+    public QuestManager questManager;
 
     private void Awake()
     {

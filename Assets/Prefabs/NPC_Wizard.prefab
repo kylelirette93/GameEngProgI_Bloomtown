@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7830780706160105887}
   - component: {fileID: 8128990259514529346}
-  - component: {fileID: 6691644328827460546}
   - component: {fileID: 1828163529220152242}
   - component: {fileID: 461477954985743632}
   m_Layer: 0
@@ -87,19 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6691644328827460546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267820495338534734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75cefdd004af4644db48c3fd81c4e5db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questTitle: Violet Essence
 --- !u!61 &1828163529220152242
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -157,11 +143,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 918c649b7faf5914885162c9d1d0354d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 4
   itemData: {fileID: 0}
   itemId: 
   sentences:
   - "Hello traveler! I need you to gather 5 purple violets.\t"
   - It's of the uptmost importance...
   - Hurry back!
-  isQuestDialogue: 1
+  completedSentences: []
+  questToGive:
+    title: Violet Essence
+    description: The wizard is making a potion and needs me to gather ingredients!
+    isRecieved: 0
+    isCompleted: 0
+    questGoals:
+    - objective: Gather 5 purple violets.
+      description: The wizard asked me to gather 5 purple violets. He mentioned they
+        should be outside somewhere.
+      isCompleted: 0
+    - objective: 
+      description: 
+      isCompleted: 0
+    - objective: 
+      description: 
+      isCompleted: 0
+    - objective: 
+      description: 
+      isCompleted: 0
+    - objective: 
+      description: 
+      isCompleted: 0
+    completedGoals: []

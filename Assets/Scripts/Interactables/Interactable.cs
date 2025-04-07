@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum InteractableType
@@ -7,7 +7,8 @@ public enum InteractableType
     Nothing,
     Pickup,
     Info,
-    Dialogue
+    Dialogue,
+    QuestGiver
 }
 public class Interactable : MonoBehaviour, IInteractable
 {
@@ -21,6 +22,8 @@ public class Interactable : MonoBehaviour, IInteractable
     [TextArea] public string[] sentences;
     [TextArea] public string[] completedSentences;
 
+    QuestManager questManager;
+    [SerializeField] public Quest questToGive;
     DialogueManager dialogueManager;
 
     // Static dictionary to store whether an interactable has been picked up.
@@ -42,6 +45,7 @@ public class Interactable : MonoBehaviour, IInteractable
     void Start()
     {
         inventory = GameManager.Instance.UIManager.inventory;
+        questManager = GameManager.Instance.questManager;
         dialogueManager = GameManager.Instance.dialogueManager.GetComponent<DialogueManager>();
         // Subscribe to delegate.
         DialogueManager.OnDialogueEnded += DialogueEndedHandler;
@@ -72,6 +76,10 @@ public class Interactable : MonoBehaviour, IInteractable
                     dialogueManager.DisplayNextSentence();
                 }
                 break;
+            case InteractableType.QuestGiver:
+                questManager.RecieveQuest(questToGive);            
+                break;
+
             default:
                 Nothing();
                 break;
@@ -87,11 +95,9 @@ public class Interactable : MonoBehaviour, IInteractable
     {
         if (inventory != null)
         {
-            
-                inventory.AddItem(itemData);
-                isPickedUp[itemId] = true;
-                gameObject.SetActive(false);
-            
+            inventory.AddItem(itemData);
+            isPickedUp[itemId] = true;
+            gameObject.SetActive(false);
         }
     }
 

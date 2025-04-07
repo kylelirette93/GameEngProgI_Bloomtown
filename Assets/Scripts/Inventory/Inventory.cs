@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory
+public class Inventory : MonoBehaviour
 {
     public int slotCount = 3;
     public List<ItemData> items = new List<ItemData>();

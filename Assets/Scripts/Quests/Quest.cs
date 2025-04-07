@@ -1,34 +1,49 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum QuestStatus { Started, InProgress, Completed }
+[System.Serializable]
 public class Quest
 {
-    public QuestBase Base { get; private set; }
-    public QuestStatus Status { get; private set; }
+    public string title;
+    public string description;
+    public bool isRecieved = false;
+    public bool isCompleted = false;
+    Goal currentGoal;
+    public List<Goal> questGoals;
+    public int goalsToComplete;
+    public QuestStatus CurrentStatus;
 
-    public Quest(QuestBase _base)
+    public void Recieve()
     {
-        Base = _base;
+        isRecieved = true;
+        CurrentStatus = QuestStatus.Started;
     }
 
-    public void StartQuest()
+    public void Complete()
     {
-        Status = QuestStatus.Started;
-        GameManager.Instance.dialogueManager.StartDialogue(Base.StartDialogue);
-    }
-
-    public void CompleteQuest()
-    {
-        Status = QuestStatus.Completed;
-        GameManager.Instance.dialogueManager.StartDialogue(Base.CompletedDialogue);
-
-        
-        if (Base.RequiredItem != null)
+        foreach (Goal goal in questGoals)
         {
-            // Remove item from the inventory.
+            if (goal.goalIndex == goalsToComplete)
+            {
+                isCompleted = true;
+                CurrentStatus = QuestStatus.Completed;
+            }
         }
     }
 }
 
-public enum QuestStatus { None, Started, Completed }
+[System.Serializable]
+public class Goal
+{
+    public string objective;
+    public string description;
+    public bool isCompleted = false;
+    public int goalIndex = 0;
+
+    public void Complete()
+    {
+        isCompleted = true;
+        goalIndex++;
+    }
+}
