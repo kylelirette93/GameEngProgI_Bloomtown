@@ -58,7 +58,18 @@ public class Interactable : MonoBehaviour, IInteractable
                 Nothing();
                 break;
             case InteractableType.Pickup:
-                // Check if pickup is required for a quest, if so display prompt.               
+                // Check if pickup is required for a quest, if so display prompt.
+                foreach (Quest quest in questManager.questList)
+                {
+                    foreach (Goal goal in quest.questGoals)
+                    {
+                        if (itemData == goal.requiredItem)
+                        {
+                            goal.currentAmount++;
+                            goal.CheckCompletion();
+                        }
+                    }
+                }
                 Pickup();
                 break;
             case InteractableType.Info:
@@ -77,7 +88,14 @@ public class Interactable : MonoBehaviour, IInteractable
                 }
                 break;
             case InteractableType.QuestGiver:
-                questManager.RecieveQuest(questToGive);            
+                if (questManager.questList.Contains(questToGive))
+                {
+                    questManager.CompleteQuest(questManager.questList[0]);
+                }
+                else
+                {
+                    questManager.RecieveQuest(questToGive);
+                }
                 break;
 
             default:

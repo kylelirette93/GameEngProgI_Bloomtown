@@ -11,8 +11,10 @@ public class Quest
     public bool isCompleted = false;
     Goal currentGoal;
     public List<Goal> questGoals;
+    int goalsCompleted;
     public int goalsToComplete;
     public QuestStatus CurrentStatus;
+    
 
     public void Recieve()
     {
@@ -20,12 +22,17 @@ public class Quest
         CurrentStatus = QuestStatus.Started;
     }
 
-    public void Complete()
+    public void CheckCompletion()
     {
         foreach (Goal goal in questGoals)
         {
-            if (goal.goalIndex == goalsToComplete)
+            goal.CheckCompletion();
+
+            if (goal.isCompleted) goalsCompleted++;
+
+            if (goalsCompleted >= goalsToComplete)
             {
+                // The quest is completed.
                 isCompleted = true;
                 CurrentStatus = QuestStatus.Completed;
             }
@@ -39,11 +46,15 @@ public class Goal
     public string objective;
     public string description;
     public bool isCompleted = false;
-    public int goalIndex = 0;
+    public int currentAmount;
+    public int requiredAmount;
+    public ItemData requiredItem;
 
-    public void Complete()
+    public void CheckCompletion()
     {
-        isCompleted = true;
-        goalIndex++;
+        if (currentAmount >= requiredAmount)
+        {
+            isCompleted = true;
+        }
     }
 }
