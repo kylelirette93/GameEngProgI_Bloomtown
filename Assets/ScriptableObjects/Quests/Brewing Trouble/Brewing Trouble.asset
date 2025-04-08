@@ -21,4 +21,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  isRepeatable: 0
+  isCompleted: 0
+  currentGoalIndex: 0
+  onAcceptDialogue:
+  - I'm making a potion and I need your help gathering a few ingredients.
+  onCompleteDialogue:
+  - You completed my quest, thanks for the help!

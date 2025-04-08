@@ -151,6 +151,10 @@ PrefabInstance:
       value: Violet Essence
       objectReference: {fileID: 0}
     - target: {fileID: 435868547393585732, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
+      propertyPath: activeQuestInstances.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 435868547393585732, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
       propertyPath: currentQuest.questGoals.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -159,6 +163,10 @@ PrefabInstance:
       value: The wizard requires ingredients for a potion he's brewing. He seems
         to be one lazy bastard!
       objectReference: {fileID: 0}
+    - target: {fileID: 435868547393585732, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
+      propertyPath: activeQuestInstances.Array.data[0].data
+      value: 
+      objectReference: {fileID: 11400000, guid: 145ea400a2ad3dd448556dcb1b0396fb, type: 2}
     - target: {fileID: 435868547393585732, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
       propertyPath: questList.Array.data[0].questGoals.Array.size
       value: 5

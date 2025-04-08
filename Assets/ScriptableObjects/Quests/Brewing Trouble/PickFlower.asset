@@ -16,3 +16,9 @@ MonoBehaviour:
   description: Pick a violet flower from outside the wizard's house.
   isCompleted: 0
   requiredItem: {fileID: 11400000, guid: db8012bb3d6a2e642b9459e030b07277, type: 2}
+  notStartedDialogue:
+  - I need you to gather a purple flower. There should be one outside my house somewhere.
+  inProgressDialogue:
+  - What are you waiting for, are you directionally challenged or something?
+  completedDialogue:
+  - Thanks for the flower, this will make a great addition to my potion.

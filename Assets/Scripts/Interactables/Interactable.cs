@@ -70,13 +70,20 @@ public class Interactable : MonoBehaviour, IInteractable
                 }
                 break;
             case InteractableType.QuestGiver:
-                if (questManager != null && questToGive != null)
+                if (!questManager.activeQuests.Contains(questToGive))
                 {
                     questManager.RecieveQuest(questToGive);
+                    dialogueManager.StartDialogue(questToGive.onAcceptDialogue);
+                    dialogueManager.StartDialogue(questToGive.goals[questToGive.currentGoalIndex].notStartedDialogue);
                 }
-                else
+                else if (questManager.activeQuests.Contains(questToGive) && !questToGive.goals[questToGive.currentGoalIndex].isCompleted)
                 {
-                    Debug.Log("No quest assigned to give!" + questToGive.questName); // Debug log for no quest assigned.
+                    dialogueManager.StartDialogue(questToGive.goals[questToGive.currentGoalIndex].inProgressDialogue);
+                }
+                else if (questManager.activeQuests.Contains(questToGive) && questToGive.goals[questToGive.currentGoalIndex].isCompleted)
+                    {
+                    dialogueManager.StartDialogue(questToGive.goals[questToGive.currentGoalIndex].completedDialogue);
+                    dialogueManager.StartDialogue(questToGive.onCompleteDialogue);
                 }
                 break;
             default:
@@ -85,10 +92,16 @@ public class Interactable : MonoBehaviour, IInteractable
         }    
     }
 
+    private void DialogueManager_OnDialogueEnded()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void Nothing()
     {
         Debug.Log("Interaction type not defined.");
     }
+
 
     public void Pickup()
     {

@@ -8,6 +8,7 @@ public class QuestManager : MonoBehaviour
     public List<Quest> activeQuests = new List<Quest>();
     public List<GoalInstance> activeGoals = new();
     public HashSet<string> pickedUpItems = new();
+    public Interactable questGiver { get; set; }
 
     /// <summary>
     /// Handles the interaction with the interactable object.
@@ -71,6 +72,26 @@ public class QuestManager : MonoBehaviour
                 var instance = new GoalInstance(goal);
                 activeGoals.Add(instance);
                 Debug.Log($"Added goal: {goal.description}");
+            }
+        }
+    }
+
+    public void CompleteQuest(Quest quest)
+    {
+        if (quest == null) return;
+        if (!activeQuests.Contains(quest))
+        {
+            Debug.LogWarning($"Quest '{quest.questName}' is not active.");
+            return;
+        }
+        activeQuests.Remove(quest);
+        foreach (var goal in quest.goals)
+        {
+            if (goal != null)
+            {
+                var instance = new GoalInstance(goal);
+                activeGoals.Remove(instance);
+                Debug.Log($"Removed goal: {goal.description}");
             }
         }
     }
