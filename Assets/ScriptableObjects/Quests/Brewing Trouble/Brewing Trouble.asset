@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e76fb0d9caa4e47a3606bdfa64cc99, type: 3}
+  m_Name: Brewing Trouble
+  m_EditorClassIdentifier: 
+  questName: Brewing Trouble
+  description: The wizard need's me to require ingredients for a potion. What for?
+    Who knows...
+  goals:
+  - {fileID: 11400000, guid: 747f3b9fc9b1e0144ad5399fe5139543, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  isRepeatable: 0

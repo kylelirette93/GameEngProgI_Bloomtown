@@ -1,60 +1,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum QuestStatus { Started, InProgress, Completed }
 [System.Serializable]
-public class Quest
+[CreateAssetMenu(fileName = "NewQuest", menuName = "Quest/Quest")]
+public class Quest : ScriptableObject
 {
-    public string title;
+    public string questName;
+    [TextArea] public string description;
+    public List<Goal> goals = new();
+    public bool isRepeatable = false;
+}
+
+[System.Serializable]
+[CreateAssetMenu(menuName = "Quest/Goal")]
+public class Goal : ScriptableObject
+{
+    public enum Type { Nothing, SpokenTo, Collected, Delivered }
+    public Type Objective;
     public string description;
-    public bool isRecieved = false;
     public bool isCompleted = false;
-    Goal currentGoal;
-    public List<Goal> questGoals;
-    int goalsCompleted;
-    public int goalsToComplete;
-    public QuestStatus CurrentStatus;
-    
+    public ItemData requiredItem;
+}
 
-    public void Recieve()
+[System.Serializable]
+public class GoalInstance
+{
+    public Goal data;
+    public bool isCompleted = false;
+
+    public GoalInstance(Goal goal)
     {
-        isRecieved = true;
-        CurrentStatus = QuestStatus.Started;
-    }
-
-    public void CheckCompletion()
-    {
-        foreach (Goal goal in questGoals)
-        {
-            goal.CheckCompletion();
-
-            if (goal.isCompleted) goalsCompleted++;
-
-            if (goalsCompleted >= goalsToComplete)
-            {
-                // The quest is completed.
-                isCompleted = true;
-                CurrentStatus = QuestStatus.Completed;
-            }
-        }
+        data = goal;
     }
 }
 
 [System.Serializable]
-public class Goal
+public class QuestInstance
 {
-    public string objective;
-    public string description;
+    public Quest data;
     public bool isCompleted = false;
-    public int currentAmount;
-    public int requiredAmount;
-    public ItemData requiredItem;
 
-    public void CheckCompletion()
+    public QuestInstance(Quest quest)
     {
-        if (currentAmount >= requiredAmount)
-        {
-            isCompleted = true;
-        }
+        data = quest;
     }
 }

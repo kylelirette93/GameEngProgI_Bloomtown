@@ -144,49 +144,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 4
-  itemData: {fileID: 11400000, guid: db8012bb3d6a2e642b9459e030b07277, type: 2}
+  questToGive: {fileID: 11400000, guid: 145ea400a2ad3dd448556dcb1b0396fb, type: 2}
+  itemData: {fileID: 0}
   itemId: 
   sentences:
   - "Hello traveler! I need you to gather 5 purple violets.\t"
   - It's of the uptmost importance...
   - Hurry back!
   completedSentences: []
-  questToGive:
-    title: Violet Essence
-    description: The wizard is making a potion and needs me to gather ingredients!
-    isRecieved: 0
-    isCompleted: 0
-    questGoals:
-    - objective: Gather 3 purple violets.
-      description: The wizard asked me to gather 5 purple violets. He mentioned they
-        should be outside somewhere.
-      isCompleted: 0
-      currentAmount: 0
-      requiredAmount: 3
-      requiredItem: {fileID: 11400000, guid: db8012bb3d6a2e642b9459e030b07277, type: 2}
-    - objective: 
-      description: 
-      isCompleted: 0
-      currentAmount: 0
-      requiredAmount: 0
-      requiredItem: {fileID: 0}
-    - objective: 
-      description: 
-      isCompleted: 0
-      currentAmount: 0
-      requiredAmount: 0
-      requiredItem: {fileID: 0}
-    - objective: 
-      description: 
-      isCompleted: 0
-      currentAmount: 0
-      requiredAmount: 0
-      requiredItem: {fileID: 0}
-    - objective: 
-      description: 
-      isCompleted: 0
-      currentAmount: 0
-      requiredAmount: 0
-      requiredItem: {fileID: 0}
-    goalsToComplete: 5
-    CurrentStatus: 0

@@ -1,20 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Inventory : MonoBehaviour
 {
     public int slotCount = 3;
     public List<ItemData> items = new List<ItemData>();
-
-    public Inventory()
-    {
-
-    }
+    public Sprite DefaultIcon;
+    public InventoryUI inventoryUI;
     public void AddItem(ItemData item)
     {
         if (items.Count < slotCount)
         {
             items.Add(item);
+            inventoryUI.UpdateUI();
         }
         else
         {
@@ -34,10 +33,6 @@ public class Inventory : MonoBehaviour
                 removedCount++;
             }
         }
-    }
-
-    public Inventory GetInventory()
-    {
-        return this;
+        inventoryUI.UpdateUI();
     }
 }

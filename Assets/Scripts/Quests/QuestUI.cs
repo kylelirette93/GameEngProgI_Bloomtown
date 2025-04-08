@@ -24,7 +24,7 @@ public class QuestUI : MonoBehaviour
     }
     public void DisplayQuest()
     {
-        questDisplay.text = "Title: " + activeQuest.title + "\n" + "Description: " + "\n" + activeQuest.description;
+
     }
 
 }

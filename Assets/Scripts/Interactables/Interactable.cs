@@ -14,6 +14,10 @@ public class Interactable : MonoBehaviour, IInteractable
 {
     [Header("Interactable Settings")]
     public InteractableType type;
+
+    [Header("Quest Giver Settings")]
+    [SerializeField] private Quest questToGive;
+
     public ItemData itemData;
     Inventory inventory;
     [SerializeField] string itemId;
@@ -23,30 +27,19 @@ public class Interactable : MonoBehaviour, IInteractable
     [TextArea] public string[] completedSentences;
 
     QuestManager questManager;
-    [SerializeField] public Quest questToGive;
     DialogueManager dialogueManager;
 
-    // Static dictionary to store whether an interactable has been picked up.
-    static Dictionary<string, bool> isPickedUp = new Dictionary<string, bool>();
 
     private bool dialogueStarted = false;
 
     public InteractableType InteractionType => type;
-
-    
-    void OnEnable()
-    {
-        if (isPickedUp.ContainsKey(itemId)) 
-        {
-            gameObject.SetActive(false);
-        }
-    }
 
     void Start()
     {
         inventory = GameManager.Instance.UIManager.inventory;
         questManager = GameManager.Instance.questManager;
         dialogueManager = GameManager.Instance.dialogueManager.GetComponent<DialogueManager>();
+
         // Subscribe to delegate.
         DialogueManager.OnDialogueEnded += DialogueEndedHandler;
     }
@@ -59,17 +52,6 @@ public class Interactable : MonoBehaviour, IInteractable
                 break;
             case InteractableType.Pickup:
                 // Check if pickup is required for a quest, if so display prompt.
-                foreach (Quest quest in questManager.questList)
-                {
-                    foreach (Goal goal in quest.questGoals)
-                    {
-                        if (itemData == goal.requiredItem)
-                        {
-                            goal.currentAmount++;
-                            goal.CheckCompletion();
-                        }
-                    }
-                }
                 Pickup();
                 break;
             case InteractableType.Info:
@@ -88,16 +70,15 @@ public class Interactable : MonoBehaviour, IInteractable
                 }
                 break;
             case InteractableType.QuestGiver:
-                if (questManager.questList.Contains(questToGive))
-                {
-                    questManager.CompleteQuest(questManager.questList[0]);
-                }
-                else
+                if (questManager != null && questToGive != null)
                 {
                     questManager.RecieveQuest(questToGive);
                 }
+                else
+                {
+                    Debug.Log("No quest assigned to give!" + questToGive.questName); // Debug log for no quest assigned.
+                }
                 break;
-
             default:
                 Nothing();
                 break;
@@ -111,12 +92,23 @@ public class Interactable : MonoBehaviour, IInteractable
 
     public void Pickup()
     {
-        if (inventory != null)
+        if (inventory == null || itemData == null) return;
+
+        inventory.AddItem(itemData);
+        questManager?.MarkPickedUp(itemId);
+
+        questManager?.HandleInteraction(this);
+
+        foreach (var goal in questManager.activeGoals)
         {
-            inventory.AddItem(itemData);
-            isPickedUp[itemId] = true;
-            gameObject.SetActive(false);
+            if (goal.data.requiredItem == itemData)
+            {
+                goal.isCompleted = true;
+                Debug.Log($"Goal '{goal.data.description}' completed.");
+            }
         }
+
+        gameObject.SetActive(false);
     }
 
     public void Info()
