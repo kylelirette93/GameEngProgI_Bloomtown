@@ -41782,15 +41782,9 @@ MonoBehaviour:
   itemId: 
   sentences: []
   completedSentences: []
-  quest:
-    Name: 
-    Description: 
-    isStarted: 0
-    isCompleted: 0
-    notStartedDialogue: []
-    inProgressDialogue: []
-    onCompletionDialogue: []
-    onReturnDialogue: []
+  quest: 
+  quest2: 
+  npcName: 
 --- !u!61 &948718295
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -41968,6 +41962,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: quest2
+      value: Cash Money
+      objectReference: {fileID: 0}
     - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
       propertyPath: quest.Name
       value: Purple Flower

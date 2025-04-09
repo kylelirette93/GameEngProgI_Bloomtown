@@ -38,13 +38,13 @@ public class Inventory : MonoBehaviour
 
     public void CheckForQuestItem()
     {
-        foreach (var quest in questManager.quests) 
+        foreach (var quest in questManager.activeQuests) 
         {
             if (quest.isStarted && !quest.isCompleted)
             {
                 foreach (var item in items)
                 {
-                    if (item.itemName == quest.Name)
+                    if (item.itemName == quest.itemName)
                     {
                         quest.CompleteQuest();
                         Debug.Log("Quest completed: " + quest.Name);

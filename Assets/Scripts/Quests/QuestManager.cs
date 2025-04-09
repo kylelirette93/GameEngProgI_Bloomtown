@@ -3,14 +3,36 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
-    public List<Quest> quests = new List<Quest>();
+    public List<Quest> questList = new List<Quest>();
+    public List<Quest> activeQuests = new List<Quest>();
+    public int CurrentQuestIndex = 0;
 
-    public void AddQuest(Quest quest)
+    public void AddQuest(string Name)
     {
-        if (!quests.Contains(quest))
+        Quest quest = questList.Find(q => q.Name == Name);
+        if (!activeQuests.Contains(quest) && quest.canStart && !quest.isStarted)
         {
-            Debug.Log("Quest added: " + quest.Name + " - " + quest.Description);
-            quests.Add(quest);
+            activeQuests.Add(quest);
+        }
+    }
+
+    public void RemoveQuest(string Name)
+    {
+        Quest quest = questList.Find(q => q.Name == Name);
+        questList.Remove(quest);
+        activeQuests.Remove(quest);
+    }
+
+    public Quest FindQuest(string Name)
+    {
+        Quest quest = questList.Find(q => q.Name == Name);
+        if (activeQuests.Contains(quest))
+        {
+            return quest;
+        }
+        else
+        {
+            return quest;
         }
     }
 }

@@ -139,7 +139,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e0d5b2eb7c7114bbcbfc6422f59fdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quests: []
+  questList:
+  - Name: Brewing Trouble
+    Description: The wizard needs me to find a purple flower.
+    toSpeakTo: 
+    itemName: Purple Flower
+    requiredIndex: 0
+    canStart: 1
+    isStarted: 0
+    isCompleted: 0
+    notStartedDialogue:
+    - Would you like to partake in a quest for me?
+    - Of course you would! I need you to gather a purple violet.
+    - There should be one in my backyard.
+    inProgressDialogue:
+    - I thought I told you to gather a flower for me?
+    - Is it really that difficult?
+    - Are you directionally challenged or something?
+    onCompletionDialogue:
+    - Thank you for finding my flower!
+    - I could really use a flint though...
+    - Speak to my nephew Broheim, he should be just outside your house.
+    onReturnDialogue: []
+  - Name: Flint Locked
+    Description: The wizard's nephew asked me to return to the wizard... what did
+      I get myself into?
+    toSpeakTo: Wizard
+    itemName: 
+    requiredIndex: 1
+    canStart: 0
+    isStarted: 0
+    isCompleted: 0
+    notStartedDialogue:
+    - So that brother of mine sent you for a flint?
+    - You tell that deadbeat if he wants a flint, he can pay me what he owes me!
+    - If you do that for me, I'll give you your flint.
+    inProgressDialogue:
+    - Go talk to that deadbeat wizard...
+    onCompletionDialogue:
+    - I'm not giving you a flint lock until you do.
+    onReturnDialogue: []
+  - Name: Cash Money
+    Description: The wizard gave me the money he owed, now I can return to Broheim.
+    toSpeakTo: 
+    itemName: 
+    requiredIndex: 2
+    canStart: 0
+    isStarted: 0
+    isCompleted: 0
+    notStartedDialogue:
+    - He wants his money? Fine...
+    - Here's his 5 gold.
+    - Go get my flint for me.
+    inProgressDialogue:
+    - Oh... you don't even have my flint lock?
+    onCompletionDialogue:
+    - Go get it for me... please.
+    onReturnDialogue: []
+  activeQuests: []
+  CurrentQuestIndex: 0
 --- !u!1001 &1172511531
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -144,7 +144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 4
-  questToGive: {fileID: 11400000, guid: 145ea400a2ad3dd448556dcb1b0396fb, type: 2}
   itemData: {fileID: 0}
   itemId: 
   sentences:
@@ -152,3 +151,4 @@ MonoBehaviour:
   - It's of the uptmost importance...
   - Hurry back!
   completedSentences: []
+  quest: Brewing Trouble

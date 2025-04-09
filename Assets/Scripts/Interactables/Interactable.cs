@@ -26,8 +26,9 @@ public class Interactable : MonoBehaviour, IInteractable
     private bool dialogueStarted = false;
 
     [Header("Quest Settings")]
-    public Quest quest;
-    private int questDialogueIndex = 0;
+    public string quest;
+    public string quest2;
+    public string npcName;
 
     public InteractableType InteractionType => type;
 
@@ -35,7 +36,7 @@ public class Interactable : MonoBehaviour, IInteractable
     {
         inventory = GameManager.Instance.UIManager.inventory;
         dialogueManager = GameManager.Instance.dialogueManager.GetComponent<DialogueManager>();
-
+        
         // Subscribe to delegate.
         DialogueManager.OnDialogueEnded += DialogueEndedHandler;
     }
@@ -65,27 +66,54 @@ public class Interactable : MonoBehaviour, IInteractable
                     dialogueManager.DisplayNextSentence();
                 }
                 break;
-            case InteractableType.NPC:              
-                    if (!quest.isStarted)
+            case InteractableType.NPC:
+                if (string.IsNullOrEmpty(quest)) quest = quest2;
+
+                GameManager.Instance.questManager.AddQuest(quest);              
+                if (GameManager.Instance.questManager.activeQuests.Count > 0)
+                {
+                    Quest associatedQuest = GameManager.Instance.questManager.FindQuest(quest);
+                    Debug.Log("Quest it's looking for: " + quest);
+
+                    if (!associatedQuest.isStarted && !associatedQuest.isCompleted)
                     {
-                        GameManager.Instance.dialogueManager.StartDialogue(quest.notStartedDialogue);
+                        GameManager.Instance.dialogueManager.StartDialogue(associatedQuest.notStartedDialogue);
                         // Toggle quest started state.
-                        quest.StartQuest();
+                        associatedQuest.StartQuest();
+                        associatedQuest.isStarted = true;
                         // Add quest to the quest manager.
                         GameManager.Instance.questManager.AddQuest(quest);
+                        if (associatedQuest.itemName == string.Empty)
+                        {
+                            GameManager.Instance.dialogueManager.StartDialogue(associatedQuest.inProgressDialogue);
+                            associatedQuest.isCompleted = true;
+                            associatedQuest.CompleteQuest();
+                            GameManager.Instance.questManager.RemoveQuest(quest);
+                            foreach (Quest quest in GameManager.Instance.questManager.questList)
+                            {
+                                quest.CheckIfCanStart();
+                            }
+                        }
                     }
-                    else if (quest.isStarted && !quest.isCompleted)
+                    else if (associatedQuest.isStarted && !associatedQuest.isCompleted)
                     {
-                        GameManager.Instance.dialogueManager.StartDialogue(quest.inProgressDialogue);
+                        GameManager.Instance.dialogueManager.StartDialogue(associatedQuest.inProgressDialogue);
                     }
-                    else if (quest.isCompleted)
+                    else if (associatedQuest.isCompleted)
                     {
-                        GameManager.Instance.dialogueManager.StartDialogue(quest.onCompletionDialogue);
+                        GameManager.Instance.dialogueManager.StartDialogue(associatedQuest.onCompletionDialogue);
+                        GameManager.Instance.questManager.RemoveQuest(quest);
+                        foreach (Quest quest in GameManager.Instance.questManager.questList)
+                        {
+                            quest.CheckIfCanStart();
+                        }
                     }
                     else
                     {
-                           GameManager.Instance.dialogueManager.StartDialogue(quest.onReturnDialogue);
-                    }               
+                        GameManager.Instance.dialogueManager.StartDialogue(associatedQuest.onReturnDialogue);
+                    }
+                }
+                     
                 break;
             default:
                 Nothing();
@@ -102,8 +130,7 @@ public class Interactable : MonoBehaviour, IInteractable
     public void Pickup()
     {
         if (inventory == null || itemData == null) return;
-
-        
+      
         inventory.AddItem(itemData);
         inventory.CheckForQuestItem();
 
