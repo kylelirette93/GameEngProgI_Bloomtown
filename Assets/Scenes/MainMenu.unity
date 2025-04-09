@@ -142,7 +142,6 @@ MonoBehaviour:
   questList:
   - Name: Brewing Trouble
     Description: The wizard needs me to find a purple flower.
-    toSpeakTo: 
     itemName: Purple Flower
     requiredIndex: 0
     canStart: 1
@@ -164,7 +163,6 @@ MonoBehaviour:
   - Name: Flint Locked
     Description: The wizard's nephew asked me to return to the wizard... what did
       I get myself into?
-    toSpeakTo: Wizard
     itemName: 
     requiredIndex: 1
     canStart: 0
@@ -181,7 +179,6 @@ MonoBehaviour:
     onReturnDialogue: []
   - Name: Cash Money
     Description: The wizard gave me the money he owed, now I can return to Broheim.
-    toSpeakTo: 
     itemName: 
     requiredIndex: 2
     canStart: 0
@@ -191,6 +188,21 @@ MonoBehaviour:
     - He wants his money? Fine...
     - Here's his 5 gold.
     - Go get my flint for me.
+    inProgressDialogue:
+    - Oh... you don't even have my flint lock?
+    onCompletionDialogue:
+    - Go get it for me... please.
+    onReturnDialogue: []
+  - Name: 'Ronnie '
+    Description: 
+    itemName: 
+    requiredIndex: 3
+    canStart: 0
+    isStarted: 0
+    isCompleted: 0
+    notStartedDialogue:
+    - I see you've talked to the wizard.
+    - 
     inProgressDialogue:
     - Oh... you don't even have my flint lock?
     onCompletionDialogue:
@@ -213,6 +225,10 @@ PrefabInstance:
     - target: {fileID: 3532752636774994319, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3569363698633105036, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
+      propertyPath: moveSpeed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4177790959134871591, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
       propertyPath: questManager

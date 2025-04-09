@@ -26,6 +26,7 @@ public class Interactable : MonoBehaviour, IInteractable
     private bool dialogueStarted = false;
 
     [Header("Quest Settings")]
+    Quest associatedQuest;
     public string quest;
     public string quest2;
     public string npcName;
@@ -67,9 +68,17 @@ public class Interactable : MonoBehaviour, IInteractable
                 }
                 break;
             case InteractableType.NPC:
-                if (string.IsNullOrEmpty(quest)) quest = quest2;
-
-                GameManager.Instance.questManager.AddQuest(quest);              
+                // Check if quest is already completed, if so wizard gives the next quest.
+                Quest questToCheck = GameManager.Instance.questManager.FindQuest(quest);
+                if (questToCheck.isCompleted)
+                {
+                    associatedQuest = quest2;
+                    GameManager.Instance.questManager.AddQuest(quest2);
+                }
+                else
+                {
+                    GameManager.Instance.questManager.AddQuest(quest);
+                }
                 if (GameManager.Instance.questManager.activeQuests.Count > 0)
                 {
                     Quest associatedQuest = GameManager.Instance.questManager.FindQuest(quest);
@@ -83,11 +92,11 @@ public class Interactable : MonoBehaviour, IInteractable
                         associatedQuest.isStarted = true;
                         // Add quest to the quest manager.
                         GameManager.Instance.questManager.AddQuest(quest);
+                        // If no item's required for the quest, complete it.
                         if (associatedQuest.itemName == string.Empty)
                         {
                             GameManager.Instance.dialogueManager.StartDialogue(associatedQuest.inProgressDialogue);
                             associatedQuest.isCompleted = true;
-                            associatedQuest.CompleteQuest();
                             GameManager.Instance.questManager.RemoveQuest(quest);
                             foreach (Quest quest in GameManager.Instance.questManager.questList)
                             {
@@ -112,8 +121,7 @@ public class Interactable : MonoBehaviour, IInteractable
                     {
                         GameManager.Instance.dialogueManager.StartDialogue(associatedQuest.onReturnDialogue);
                     }
-                }
-                     
+                }                     
                 break;
             default:
                 Nothing();

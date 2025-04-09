@@ -10,7 +10,8 @@ public class QuestManager : MonoBehaviour
     public void AddQuest(string Name)
     {
         Quest quest = questList.Find(q => q.Name == Name);
-        if (!activeQuests.Contains(quest) && quest.canStart && !quest.isStarted)
+        Debug.Log($"Trying to find quest with name {Name} found? {quest != null}");
+        if (!activeQuests.Contains(quest) && quest.canStart && !quest.isStarted && CurrentQuestIndex >= quest.requiredIndex)
         {
             activeQuests.Add(quest);
         }
