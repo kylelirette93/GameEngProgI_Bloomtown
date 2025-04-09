@@ -953,7 +953,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8016590811490400899}
-  - component: {fileID: 435868547393585732}
   m_Layer: 0
   m_Name: QuestManager
   m_TagString: Untagged
@@ -976,20 +975,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7523074889354648079}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &435868547393585732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1699327789107385519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8e0d5b2eb7c7114bbcbfc6422f59fdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questList: []
-  activeQuests: []
 --- !u!1 &1945468109374185944
 GameObject:
   m_ObjectHideFlags: 0
@@ -1336,14 +1321,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8acbbde600d91445a58b5687685066f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questDisplay: {fileID: 1998724832572121138}
+  questDisplay: {fileID: 0}
   activeQuest:
-    title: 
-    description: 
-    isRecieved: 0
+    Name: 
+    Description: 
+    isStarted: 0
     isCompleted: 0
-    questGoals: []
-    completedGoals: []
+    notStartedDialogue: []
+    inProgressDialogue: []
+    onCompletionDialogue: []
 --- !u!1 &2363709972428373759
 GameObject:
   m_ObjectHideFlags: 0
@@ -1936,7 +1922,6 @@ MonoBehaviour:
   SoundManager: {fileID: 768540309899522162}
   dialogueManager: {fileID: 8417053866926896389}
   playerController: {fileID: 3569363698633105036}
-  questManager: {fileID: 435868547393585732}
 --- !u!1 &3580324833092901741
 GameObject:
   m_ObjectHideFlags: 0
@@ -3194,6 +3179,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotCount: 3
   items: []
+  DefaultIcon: {fileID: -1526808307, guid: 43a7d98bd4222b64e933596512dc09ad, type: 3}
+  inventoryUI: {fileID: 7135215375779165734}
 --- !u!1 &6208538354225391138
 GameObject:
   m_ObjectHideFlags: 0
@@ -5354,7 +5341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8276513173191915349, guid: 5fb202cd0f2d9d147ac11a0ef34bfa56, type: 3}
       propertyPath: moveSpeed
-      value: 15
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8424569221292070927, guid: 5fb202cd0f2d9d147ac11a0ef34bfa56, type: 3}
       propertyPath: m_Name

@@ -41781,6 +41781,16 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: a280820744e2c7d438f2a7a8bddf3cfa, type: 2}
   itemId: 
   sentences: []
+  completedSentences: []
+  quest:
+    Name: 
+    Description: 
+    isStarted: 0
+    isCompleted: 0
+    notStartedDialogue: []
+    inProgressDialogue: []
+    onCompletionDialogue: []
+    onReturnDialogue: []
 --- !u!61 &948718295
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -41958,6 +41968,63 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: quest.Name
+      value: Purple Flower
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: quest.Description
+      value: The wizard needs me to gather a few ingredients for a potion. What a
+        peculiar fellow...
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: quest.inProgressDialogue.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: quest.notStartedDialogue.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: quest.onCompletionDialogue.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: quest.inProgressDialogue.Array.data[0]
+      value: I thought I asked for a purple violet, there should be one in my backyard!
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: quest.inProgressDialogue.Array.data[1]
+      value: Is it really that difficult?
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: quest.inProgressDialogue.Array.data[2]
+      value: You're not directionally challenged, are you?
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: quest.notStartedDialogue.Array.data[0]
+      value: Would you like to help me with a quest?
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: quest.notStartedDialogue.Array.data[1]
+      value: I need help finding ingredients, for my potion.
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: quest.notStartedDialogue.Array.data[2]
+      value: Find me one purple violet, there should be one in my backyard.
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: quest.onCompletionDialogue.Array.data[0]
+      value: Thank you for finding my flower, if only I had a flint...
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: quest.onCompletionDialogue.Array.data[1]
+      value: Speak to my nephew Broheim for me...
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: quest.onCompletionDialogue.Array.data[2]
+      value: I'm sure he has a flint he can give me.
+      objectReference: {fileID: 0}
     - target: {fileID: 1267820495338534734, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
       propertyPath: m_Name
       value: NPC_Wizard

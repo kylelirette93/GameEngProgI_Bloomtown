@@ -8,15 +8,12 @@ public enum InteractableType
     Pickup,
     Info,
     Dialogue,
-    QuestGiver
+    NPC
 }
 public class Interactable : MonoBehaviour, IInteractable
 {
     [Header("Interactable Settings")]
     public InteractableType type;
-
-    [Header("Quest Giver Settings")]
-    [SerializeField] private Quest questToGive;
 
     public ItemData itemData;
     Inventory inventory;
@@ -25,19 +22,18 @@ public class Interactable : MonoBehaviour, IInteractable
     [Header("Dialogue Settings")]
     [TextArea] public string[] sentences;
     [TextArea] public string[] completedSentences;
-
-    QuestManager questManager;
     DialogueManager dialogueManager;
-
-
     private bool dialogueStarted = false;
+
+    [Header("Quest Settings")]
+    public Quest quest;
+    private int questDialogueIndex = 0;
 
     public InteractableType InteractionType => type;
 
     void Start()
     {
         inventory = GameManager.Instance.UIManager.inventory;
-        questManager = GameManager.Instance.questManager;
         dialogueManager = GameManager.Instance.dialogueManager.GetComponent<DialogueManager>();
 
         // Subscribe to delegate.
@@ -69,32 +65,32 @@ public class Interactable : MonoBehaviour, IInteractable
                     dialogueManager.DisplayNextSentence();
                 }
                 break;
-            case InteractableType.QuestGiver:
-                if (!questManager.activeQuests.Contains(questToGive))
-                {
-                    questManager.RecieveQuest(questToGive);
-                    dialogueManager.StartDialogue(questToGive.onAcceptDialogue);
-                    dialogueManager.StartDialogue(questToGive.goals[questToGive.currentGoalIndex].notStartedDialogue);
-                }
-                else if (questManager.activeQuests.Contains(questToGive) && !questToGive.goals[questToGive.currentGoalIndex].isCompleted)
-                {
-                    dialogueManager.StartDialogue(questToGive.goals[questToGive.currentGoalIndex].inProgressDialogue);
-                }
-                else if (questManager.activeQuests.Contains(questToGive) && questToGive.goals[questToGive.currentGoalIndex].isCompleted)
+            case InteractableType.NPC:              
+                    if (!quest.isStarted)
                     {
-                    dialogueManager.StartDialogue(questToGive.goals[questToGive.currentGoalIndex].completedDialogue);
-                    dialogueManager.StartDialogue(questToGive.onCompleteDialogue);
-                }
+                        GameManager.Instance.dialogueManager.StartDialogue(quest.notStartedDialogue);
+                        // Toggle quest started state.
+                        quest.StartQuest();
+                        // Add quest to the quest manager.
+                        GameManager.Instance.questManager.AddQuest(quest);
+                    }
+                    else if (quest.isStarted && !quest.isCompleted)
+                    {
+                        GameManager.Instance.dialogueManager.StartDialogue(quest.inProgressDialogue);
+                    }
+                    else if (quest.isCompleted)
+                    {
+                        GameManager.Instance.dialogueManager.StartDialogue(quest.onCompletionDialogue);
+                    }
+                    else
+                    {
+                           GameManager.Instance.dialogueManager.StartDialogue(quest.onReturnDialogue);
+                    }               
                 break;
             default:
                 Nothing();
                 break;
         }    
-    }
-
-    private void DialogueManager_OnDialogueEnded()
-    {
-        throw new System.NotImplementedException();
     }
 
     public void Nothing()
@@ -107,19 +103,9 @@ public class Interactable : MonoBehaviour, IInteractable
     {
         if (inventory == null || itemData == null) return;
 
+        
         inventory.AddItem(itemData);
-        questManager?.MarkPickedUp(itemId);
-
-        questManager?.HandleInteraction(this);
-
-        foreach (var goal in questManager.activeGoals)
-        {
-            if (goal.data.requiredItem == itemData)
-            {
-                goal.isCompleted = true;
-                Debug.Log($"Goal '{goal.data.description}' completed.");
-            }
-        }
+        inventory.CheckForQuestItem();
 
         gameObject.SetActive(false);
     }

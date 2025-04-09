@@ -2,58 +2,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "NewQuest", menuName = "Quest/Quest")]
-public class Quest : ScriptableObject
+public class Quest
 {
-    public string questName;
-    [TextArea] public string description;
-    public List<Goal> goals = new();
+    public string Name;
+    public string Description;
+    public bool isStarted = false;
     public bool isCompleted = false;
+    public string[] notStartedDialogue;
+    public string[] inProgressDialogue;
+    public string[] onCompletionDialogue;
+    public string[] onReturnDialogue;
 
-    public int currentGoalIndex = 0;
-
-    [Header("Dialogue")]
-    [TextArea] public string[] onAcceptDialogue;
-    [TextArea] public string[] onCompleteDialogue;
-}
-
-[System.Serializable]
-[CreateAssetMenu(menuName = "Quest/Goal")]
-public class Goal : ScriptableObject
-{
-    public enum Type { Nothing, SpokenTo, Collected, Delivered }
-    public Type Objective;
-    public string description;
-    public bool isCompleted = false;
-    public ItemData requiredItem;
-
-    [Header("Dialogue")]
-    [TextArea] public string[] notStartedDialogue;
-    [TextArea] public string[] inProgressDialogue;
-    [TextArea] public string[] completedDialogue;
-}
-
-public class GoalInstance
-{
-    public Goal data;
-    public bool isCompleted = false;
-
-    public GoalInstance(Goal goal)
+    public void StartQuest()
     {
-        data = goal;
+        isStarted = true;
     }
-}
 
-[System.Serializable]
-public class QuestInstance
-{
-    public Quest data;
-    public bool isCompleted = false;
-    public List<GoalInstance> goalInstances = new List<GoalInstance>();
-
-    public QuestInstance(Quest quest)
+    public void CompleteQuest()
     {
-        data = quest;
-        goalInstances = quest.goals.ConvertAll(goal => new GoalInstance(goal));
+        isCompleted = true;
     }
 }
