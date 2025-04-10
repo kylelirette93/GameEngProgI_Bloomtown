@@ -6,6 +6,7 @@ public class InteractionController : MonoBehaviour
 {
     public IInteractable interactable = null;
     public GameObject interactPrompt;
+    public QuestManager questManager;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

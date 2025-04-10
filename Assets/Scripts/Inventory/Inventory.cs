@@ -8,10 +8,23 @@ public class Inventory : MonoBehaviour
     public Sprite DefaultIcon;
     public InventoryUI inventoryUI;
     public QuestManager questManager;
-    public void AddItem(ItemData item)
+    public ProgressTracker progressTracker;
+    public int flowerCount = 0;
+
+    public void AddItem(ItemData item, int amount)
     {
         if (items.Count < slotCount)
         {
+            if (item.itemName == "Purple Flower")
+            {
+                progressTracker.flowersPicked += amount;
+                questManager.CheckQuestStatus();
+            }
+            if (item.itemName == "Mushroom")
+            {
+                progressTracker.mushroomsPicked += amount;
+                questManager.CheckQuestStatus();
+            }
             items.Add(item);
             inventoryUI.UpdateUI();
         }
@@ -21,6 +34,12 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void RemoveAll()
+    {
+        // Remove all items from inventory when quest is completed.
+        items.Clear();
+        inventoryUI.UpdateUI();
+    }
     public void RemoveItemsByValue(ItemData itemToRemove, int amount)
     {
         int removedCount = 0;
@@ -34,24 +53,5 @@ public class Inventory : MonoBehaviour
             }
         }
         inventoryUI.UpdateUI();
-    }
-
-    public void CheckForQuestItem()
-    {
-        foreach (var quest in questManager.activeQuests) 
-        {
-            if (quest.isStarted && !quest.isCompleted)
-            {
-                foreach (var item in items)
-                {
-                    if (item.itemName == quest.itemName)
-                    {
-                        quest.CompleteQuest();
-                        Debug.Log("Quest completed: " + quest.Name);
-                        break;
-                    }
-                }
-            }
-        }
     }
 }

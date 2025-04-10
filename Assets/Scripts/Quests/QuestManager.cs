@@ -1,39 +1,45 @@
-using System.Collections.Generic;
 using UnityEngine;
 
+public enum QuestType { PickFlower, PickMushrooms, TalkToElders, HuntRabbits, }
 public class QuestManager : MonoBehaviour
 {
-    public List<Quest> questList = new List<Quest>();
-    public List<Quest> activeQuests = new List<Quest>();
-    public int CurrentQuestIndex = 0;
+    Inventory inventory;
+    ProgressTracker progressTracker;
 
-    public void AddQuest(string Name)
+    void Start()
     {
-        Quest quest = questList.Find(q => q.Name == Name);
-        Debug.Log($"Trying to find quest with name {Name} found? {quest != null}");
-        if (!activeQuests.Contains(quest) && quest.canStart && !quest.isStarted && CurrentQuestIndex >= quest.requiredIndex)
-        {
-            activeQuests.Add(quest);
-        }
+        inventory = GameManager.Instance.UIManager.inventory;
+        progressTracker = GameManager.Instance.progressTracker;
     }
+    public enum PickFlowerQuestStatus { NotStarted, InProgress, Completed, After }
+    public PickFlowerQuestStatus pickFlowerQuestStatus = PickFlowerQuestStatus.NotStarted;
 
-    public void RemoveQuest(string Name)
-    {
-        Quest quest = questList.Find(q => q.Name == Name);
-        questList.Remove(quest);
-        activeQuests.Remove(quest);
-    }
+    public enum PickMushroomsQuestStatus { NotStarted, InProgress, Completed, After }
+    public PickMushroomsQuestStatus pickMushroomsQuestStatus = PickMushroomsQuestStatus.NotStarted;
 
-    public Quest FindQuest(string Name)
+    public enum TalkToEldersQuestStatus { NotStarted, InProgress, Completed, After }
+    public TalkToEldersQuestStatus talkToEldersQuestStatus = TalkToEldersQuestStatus.NotStarted;
+
+    public enum HuntRabbitsQuestStatus { NotStarted, InProgress, Completed, After }
+    public HuntRabbitsQuestStatus huntRabbitsQuestStatus = HuntRabbitsQuestStatus.NotStarted;
+
+    public void CheckQuestStatus()
     {
-        Quest quest = questList.Find(q => q.Name == Name);
-        if (activeQuests.Contains(quest))
+        if (progressTracker.flowersPicked >= 3)
         {
-            return quest;
+            pickFlowerQuestStatus = PickFlowerQuestStatus.Completed;
         }
-        else
+        if (progressTracker.mushroomsPicked >= 3)         
         {
-            return quest;
+            pickMushroomsQuestStatus = PickMushroomsQuestStatus.Completed;
+        }
+        if (progressTracker.eldersTalkedTo >= 3)
+        {
+            talkToEldersQuestStatus = TalkToEldersQuestStatus.Completed;
+        }
+        if (progressTracker.rabbitsHunted >= 3)
+        {
+            huntRabbitsQuestStatus = HuntRabbitsQuestStatus.Completed;
         }
     }
 }

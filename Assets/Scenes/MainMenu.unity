@@ -122,94 +122,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &55850123 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1699327789107385519, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
+--- !u!114 &55850125 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6650120294285408749, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
   m_PrefabInstance: {fileID: 1172511531}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &55850125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 55850123}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8e0d5b2eb7c7114bbcbfc6422f59fdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questList:
-  - Name: Brewing Trouble
-    Description: The wizard needs me to find a purple flower.
-    itemName: Purple Flower
-    requiredIndex: 0
-    canStart: 1
-    isStarted: 0
-    isCompleted: 0
-    notStartedDialogue:
-    - Would you like to partake in a quest for me?
-    - Of course you would! I need you to gather a purple violet.
-    - There should be one in my backyard.
-    inProgressDialogue:
-    - I thought I told you to gather a flower for me?
-    - Is it really that difficult?
-    - Are you directionally challenged or something?
-    onCompletionDialogue:
-    - Thank you for finding my flower!
-    - I could really use a flint though...
-    - Speak to my nephew Broheim, he should be just outside your house.
-    onReturnDialogue: []
-  - Name: Flint Locked
-    Description: The wizard's nephew asked me to return to the wizard... what did
-      I get myself into?
-    itemName: 
-    requiredIndex: 1
-    canStart: 0
-    isStarted: 0
-    isCompleted: 0
-    notStartedDialogue:
-    - So that brother of mine sent you for a flint?
-    - You tell that deadbeat if he wants a flint, he can pay me what he owes me!
-    - If you do that for me, I'll give you your flint.
-    inProgressDialogue:
-    - Go talk to that deadbeat wizard...
-    onCompletionDialogue:
-    - I'm not giving you a flint lock until you do.
-    onReturnDialogue: []
-  - Name: Cash Money
-    Description: The wizard gave me the money he owed, now I can return to Broheim.
-    itemName: 
-    requiredIndex: 2
-    canStart: 0
-    isStarted: 0
-    isCompleted: 0
-    notStartedDialogue:
-    - He wants his money? Fine...
-    - Here's his 5 gold.
-    - Go get my flint for me.
-    inProgressDialogue:
-    - Oh... you don't even have my flint lock?
-    onCompletionDialogue:
-    - Go get it for me... please.
-    onReturnDialogue: []
-  - Name: 'Ronnie '
-    Description: 
-    itemName: 
-    requiredIndex: 3
-    canStart: 0
-    isStarted: 0
-    isCompleted: 0
-    notStartedDialogue:
-    - I see you've talked to the wizard.
-    - 
-    inProgressDialogue:
-    - Oh... you don't even have my flint lock?
-    onCompletionDialogue:
-    - Go get it for me... please.
-    onReturnDialogue: []
-  activeQuests: []
-  CurrentQuestIndex: 0
 --- !u!1001 &1172511531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -222,6 +145,10 @@ PrefabInstance:
       propertyPath: questManager
       value: 
       objectReference: {fileID: 55850125}
+    - target: {fileID: 379926732095060858, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
+      propertyPath: progressTracker
+      value: 
+      objectReference: {fileID: 1172511532}
     - target: {fileID: 3532752636774994319, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -234,6 +161,14 @@ PrefabInstance:
       propertyPath: questManager
       value: 
       objectReference: {fileID: 55850125}
+    - target: {fileID: 4177790959134871591, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
+      propertyPath: progressTracker
+      value: 
+      objectReference: {fileID: 1172511532}
+    - target: {fileID: 6650120294285408749, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
+      propertyPath: progressTracker
+      value: 
+      objectReference: {fileID: 1172511532}
     - target: {fileID: 7523074889354648079, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.046887636
@@ -277,11 +212,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1699327789107385519, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 55850125}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
+--- !u!114 &1172511532 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6268308082150205747, guid: 26013ba5ca95cea4d9388ca60796f740, type: 3}
+  m_PrefabInstance: {fileID: 1172511531}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c324066cf5c041e44bdfd6ea3f56747e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1921430395
 GameObject:
   m_ObjectHideFlags: 0

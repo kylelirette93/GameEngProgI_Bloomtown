@@ -143,12 +143,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 918c649b7faf5914885162c9d1d0354d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 4
+  type: 3
   itemData: {fileID: 0}
   itemId: 
   sentences:
   - "Hello traveler! I need you to gather 5 purple violets.\t"
-  - It's of the uptmost importance...
-  - Hurry back!
-  completedSentences: []
-  quest: Brewing Trouble
+  notStartedDialogue:
+  - Hello, I need ingredients for a potion I'm making, can you help me?
+  inPogressDialogue:
+  - Have you found my flowers yet? Keep looking for them.
+  completionDialogue:
+  - Thank you for finding my flowers, you've been a big help!
+  afterDialogue:
+  - Random gibberish gibberish.

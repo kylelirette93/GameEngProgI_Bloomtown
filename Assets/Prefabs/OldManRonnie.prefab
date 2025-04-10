@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3316070281717249013}
   - component: {fileID: 4022521683954998353}
   m_Layer: 0
-  m_Name: Ronnie
+  m_Name: OldManRonnie
   m_TagString: InteractObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,11 +143,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 918c649b7faf5914885162c9d1d0354d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 4
+  type: 3
   itemData: {fileID: 0}
+  questReward: {fileID: 0}
   itemId: 
-  sentences: []
-  completedSentences: []
-  quest: 
-  quest2: 
-  npcName: 
+  sentences:
+  - 
+  notStartedDialogue:
+  - Hey there young whipper snapper! Those pesky rabbits have been eating my pretty
+    flowers! Go squish them.
+  inPogressDialogue:
+  - You haven't squished those rabbits yet? It's not hard, they're only rabbits Get
+    going young buck!
+  completionDialogue:
+  - 'Thank you for dealing with that rabbit problem. I''ve noticed some of my purple
+    violets have been eaten too! '
+  afterDialogue:
+  - Now that those rabbits are gone, I'll regrow my garden!
+  questType: 3

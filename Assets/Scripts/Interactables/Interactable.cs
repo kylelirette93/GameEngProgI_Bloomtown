@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public enum InteractableType
@@ -8,7 +6,7 @@ public enum InteractableType
     Pickup,
     Info,
     Dialogue,
-    NPC
+    Attack
 }
 public class Interactable : MonoBehaviour, IInteractable
 {
@@ -16,20 +14,24 @@ public class Interactable : MonoBehaviour, IInteractable
     public InteractableType type;
 
     public ItemData itemData;
+    public ItemData questReward;
     Inventory inventory;
     [SerializeField] string itemId;
 
     [Header("Dialogue Settings")]
     [TextArea] public string[] sentences;
-    [TextArea] public string[] completedSentences;
+    [TextArea] public string[] notStartedDialogue;
+    [TextArea] public string[] inPogressDialogue;
+    [TextArea] public string[] completionDialogue;
+    [TextArea] public string[] afterDialogue;
     DialogueManager dialogueManager;
     private bool dialogueStarted = false;
 
-    [Header("Quest Settings")]
-    Quest associatedQuest;
-    public string quest;
-    public string quest2;
-    public string npcName;
+
+    QuestManager questManager;
+    public QuestType questType;
+    public bool canPickup = false;
+    public bool canAttack = false;
 
     public InteractableType InteractionType => type;
 
@@ -37,6 +39,7 @@ public class Interactable : MonoBehaviour, IInteractable
     {
         inventory = GameManager.Instance.UIManager.inventory;
         dialogueManager = GameManager.Instance.dialogueManager.GetComponent<DialogueManager>();
+        questManager = GameManager.Instance.questManager.GetComponent<QuestManager>();
         
         // Subscribe to delegate.
         DialogueManager.OnDialogueEnded += DialogueEndedHandler;
@@ -49,7 +52,6 @@ public class Interactable : MonoBehaviour, IInteractable
                 Nothing();
                 break;
             case InteractableType.Pickup:
-                // Check if pickup is required for a quest, if so display prompt.
                 Pickup();
                 break;
             case InteractableType.Info:
@@ -57,71 +59,11 @@ public class Interactable : MonoBehaviour, IInteractable
                 break;
             case InteractableType.Dialogue:
                 // If dialogue has not started, start it, otherwise display the next sentence.
-                if (!dialogueStarted)
-                {
-                    dialogueManager.StartDialogue(sentences);
-                    dialogueStarted = true;
-                }
-                else                 
-                {
-                    dialogueManager.DisplayNextSentence();
-                }
+                Dialogue();
                 break;
-            case InteractableType.NPC:
-                // Check if quest is already completed, if so wizard gives the next quest.
-                Quest questToCheck = GameManager.Instance.questManager.FindQuest(quest);
-                if (questToCheck.isCompleted)
-                {
-                    associatedQuest = quest2;
-                    GameManager.Instance.questManager.AddQuest(quest2);
-                }
-                else
-                {
-                    GameManager.Instance.questManager.AddQuest(quest);
-                }
-                if (GameManager.Instance.questManager.activeQuests.Count > 0)
-                {
-                    Quest associatedQuest = GameManager.Instance.questManager.FindQuest(quest);
-                    Debug.Log("Quest it's looking for: " + quest);
-
-                    if (!associatedQuest.isStarted && !associatedQuest.isCompleted)
-                    {
-                        GameManager.Instance.dialogueManager.StartDialogue(associatedQuest.notStartedDialogue);
-                        // Toggle quest started state.
-                        associatedQuest.StartQuest();
-                        associatedQuest.isStarted = true;
-                        // Add quest to the quest manager.
-                        GameManager.Instance.questManager.AddQuest(quest);
-                        // If no item's required for the quest, complete it.
-                        if (associatedQuest.itemName == string.Empty)
-                        {
-                            GameManager.Instance.dialogueManager.StartDialogue(associatedQuest.inProgressDialogue);
-                            associatedQuest.isCompleted = true;
-                            GameManager.Instance.questManager.RemoveQuest(quest);
-                            foreach (Quest quest in GameManager.Instance.questManager.questList)
-                            {
-                                quest.CheckIfCanStart();
-                            }
-                        }
-                    }
-                    else if (associatedQuest.isStarted && !associatedQuest.isCompleted)
-                    {
-                        GameManager.Instance.dialogueManager.StartDialogue(associatedQuest.inProgressDialogue);
-                    }
-                    else if (associatedQuest.isCompleted)
-                    {
-                        GameManager.Instance.dialogueManager.StartDialogue(associatedQuest.onCompletionDialogue);
-                        GameManager.Instance.questManager.RemoveQuest(quest);
-                        foreach (Quest quest in GameManager.Instance.questManager.questList)
-                        {
-                            quest.CheckIfCanStart();
-                        }
-                    }
-                    else
-                    {
-                        GameManager.Instance.dialogueManager.StartDialogue(associatedQuest.onReturnDialogue);
-                    }
-                }                     
+            case InteractableType.Attack:
+                Enemy enemy = GetComponent<Enemy>();
+                enemy.TakeDamage(1);
                 break;
             default:
                 Nothing();
@@ -138,13 +80,111 @@ public class Interactable : MonoBehaviour, IInteractable
     public void Pickup()
     {
         if (inventory == null || itemData == null) return;
-      
-        inventory.AddItem(itemData);
-        inventory.CheckForQuestItem();
-
+        inventory.AddItem(itemData, 1);
         gameObject.SetActive(false);
+        
     }
 
+    public void Dialogue()
+    {
+        switch (questType)
+        {
+            case QuestType.PickFlower:
+                if (questManager.pickFlowerQuestStatus == QuestManager.PickFlowerQuestStatus.NotStarted)
+                {
+                    sentences = notStartedDialogue;
+                    questManager.pickFlowerQuestStatus = QuestManager.PickFlowerQuestStatus.InProgress;
+                }
+                else if (questManager.pickFlowerQuestStatus == QuestManager.PickFlowerQuestStatus.InProgress)
+                {
+                    sentences = inPogressDialogue;
+                }
+                else if (questManager.pickFlowerQuestStatus == QuestManager.PickFlowerQuestStatus.Completed)
+                {
+                    sentences = completionDialogue;
+                    inventory.RemoveAll();
+                    questManager.pickFlowerQuestStatus = QuestManager.PickFlowerQuestStatus.After;
+                }
+                else if (questManager.pickFlowerQuestStatus == QuestManager.PickFlowerQuestStatus.After)
+                {
+                    sentences = afterDialogue;
+                }
+                break;
+            case QuestType.PickMushrooms:
+                if (questManager.pickMushroomsQuestStatus == QuestManager.PickMushroomsQuestStatus.NotStarted)
+                {
+                    sentences = notStartedDialogue;
+                    questManager.pickMushroomsQuestStatus = QuestManager.PickMushroomsQuestStatus.InProgress;
+                }
+                else if (questManager.pickMushroomsQuestStatus == QuestManager.PickMushroomsQuestStatus.InProgress)
+                {
+                    sentences = inPogressDialogue;
+                }
+                else if (questManager.pickMushroomsQuestStatus == QuestManager.PickMushroomsQuestStatus.Completed)
+                {
+                    sentences = completionDialogue;
+                    inventory.RemoveAll();
+                    questManager.pickMushroomsQuestStatus = QuestManager.PickMushroomsQuestStatus.After;
+                }
+                else if (questManager.pickMushroomsQuestStatus == QuestManager.PickMushroomsQuestStatus.After)
+                {
+                    sentences = afterDialogue;
+                }
+                break;
+                case QuestType.TalkToElders:
+                if (questManager.talkToEldersQuestStatus == QuestManager.TalkToEldersQuestStatus.NotStarted)
+                {
+                    sentences = notStartedDialogue;
+                    questManager.talkToEldersQuestStatus = QuestManager.TalkToEldersQuestStatus.InProgress;
+                }
+                else if (questManager.talkToEldersQuestStatus == QuestManager.TalkToEldersQuestStatus.InProgress)
+                {
+                    sentences = inPogressDialogue;
+                }
+                else if (questManager.talkToEldersQuestStatus == QuestManager.TalkToEldersQuestStatus.Completed)
+                {
+                    sentences = completionDialogue;
+                    questManager.talkToEldersQuestStatus = QuestManager.TalkToEldersQuestStatus.After;
+                }
+                else if (questManager.talkToEldersQuestStatus == QuestManager.TalkToEldersQuestStatus.After)
+                {
+                    sentences = afterDialogue;
+                }
+                break;
+                case QuestType.HuntRabbits:
+                if (questManager.huntRabbitsQuestStatus == QuestManager.HuntRabbitsQuestStatus.NotStarted)
+                {
+                    sentences = notStartedDialogue;
+                    questManager.huntRabbitsQuestStatus = QuestManager.HuntRabbitsQuestStatus.InProgress;
+                }
+                else if (questManager.huntRabbitsQuestStatus == QuestManager.HuntRabbitsQuestStatus.InProgress)
+                {
+                    sentences = inPogressDialogue;
+                }
+                else if (questManager.huntRabbitsQuestStatus == QuestManager.HuntRabbitsQuestStatus.Completed)
+                {
+                    sentences = completionDialogue;
+                    questManager.huntRabbitsQuestStatus = QuestManager.HuntRabbitsQuestStatus.After;
+                }
+                else if (questManager.huntRabbitsQuestStatus == QuestManager.HuntRabbitsQuestStatus.After)
+                {
+                    sentences = afterDialogue;
+                }
+                break;
+
+        }
+        if (dialogueStarted)
+        {
+            // Display the next sentence.
+            dialogueManager.DisplayNextSentence();
+        }
+        else
+        {
+            // Start the dialogue.
+            dialogueManager.StartDialogue(sentences);
+            dialogueStarted = true;
+        }
+    }
     public void Info()
     {
         // Set the floating text above player's head.
