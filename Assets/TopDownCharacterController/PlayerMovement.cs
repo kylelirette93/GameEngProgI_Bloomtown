@@ -36,6 +36,14 @@ public class PlayerMovement : MonoBehaviour
         rb2D.MovePosition(rb2D.position + moveVector * moveSpeed * Time.fixedDeltaTime);
     }
 
+    public void DisablePlayer()
+    {
+        rb2D.velocity = Vector2.zero;
+        moveVector = Vector2.zero;
+        lastMoveVector = Vector2.zero;
+        Actions.MoveEvent -= GetInputVector;      
+    }
+
     void GetInputVector(Vector2 inputDirection)
     {
         // If there is movement input, store the new vector. 

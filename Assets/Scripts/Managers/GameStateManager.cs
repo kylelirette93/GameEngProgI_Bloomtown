@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameStateManager : MonoBehaviour
@@ -12,7 +13,8 @@ public class GameStateManager : MonoBehaviour
         Options_State, // The game is at options menu
         Quest_State,     // The game is at the quest menu
         Gameplay_State,   // The game is actively being played
-        Paused_State      // The game is paused
+        Paused_State,      // The game is paused
+        End_State
     }
 
     // Property to store the current game state
@@ -120,12 +122,17 @@ public class GameStateManager : MonoBehaviour
                 Time.timeScale = 1;  // Resume gameplay
                 Debug.Log("Entered Gameplay State");
                 break;
-
             case GameState.Paused_State:
                 EnableCursor();
                 GameManager.Instance.UIManager.EnablePauseMenuUI();
                 Time.timeScale = 0;  // Pause gameplay
                 Debug.Log("Entered Paused State");
+                break;
+            case GameState.End_State:
+                EnableCursor();
+                GameManager.Instance.playerController.DisablePlayer();
+                GameManager.Instance.levelManager.ChangeScene("Ending", "SpawnPoint");
+                GameManager.Instance.UIManager.EnableEndMenuUI();
                 break;
         }
     }

@@ -30,9 +30,6 @@ public class Inventory : MonoBehaviour
                 progressTracker.applesPicked += amount;
                 questManager.CheckQuestStatus();
             }
-            {
-                
-            }
             items.Add(item);
             inventoryUI.UpdateUI();
         }

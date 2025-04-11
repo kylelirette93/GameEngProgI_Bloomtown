@@ -352,23 +352,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4526362988305994859, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
       propertyPath: afterDialogue.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4526362988305994859, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
       propertyPath: afterDialogue.Array.data[0]
-      value: Who am I even? If I am that I am, am I really that I am?
+      value: This little guy... it came from the earth, yeah?
       objectReference: {fileID: 0}
     - target: {fileID: 4526362988305994859, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
       propertyPath: afterDialogue.Array.data[1]
-      value: Or am I that I am really that I am?
+      value: And it makes the trees do... tree-things in a new way. So is its purpose
+        defined by its origin, or by its effect?
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526362988305994859, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
+      propertyPath: afterDialogue.Array.data[2]
+      value: And if we're all just things affecting other things... is there even
+        such a thing as a 'purpose' that isn't just a chain reaction of 'because'?
       objectReference: {fileID: 0}
     - target: {fileID: 4526362988305994859, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
       propertyPath: inPogressDialogue.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4526362988305994859, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
       propertyPath: completionDialogue.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4526362988305994859, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
       propertyPath: notStartedDialogue.Array.size
@@ -376,12 +382,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4526362988305994859, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
       propertyPath: inPogressDialogue.Array.data[0]
-      value: You got my mushrooms yet mannn?
+      value: Hmm, seems your pockets are like, empty man.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526362988305994859, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
+      propertyPath: inPogressDialogue.Array.data[1]
+      value: The trees need a little something to get in tune with the cosmic boogie.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526362988305994859, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
+      propertyPath: inPogressDialogue.Array.data[2]
+      value: Just 3 of the red mushrooms man, it's not like, that hard. You know?
       objectReference: {fileID: 0}
     - target: {fileID: 4526362988305994859, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
       propertyPath: completionDialogue.Array.data[0]
-      value: Thanks dude, I was like pretty spaced out, this will help me recenter
-        myself.
+      value: 'Thanks duuude. These are it! The trees will be doing the cosmic sway
+        in no time. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526362988305994859, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
+      propertyPath: completionDialogue.Array.data[1]
+      value: By the way, I remember this woman to the east... she like was totally
+        tripping out about something.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526362988305994859, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
+      propertyPath: completionDialogue.Array.data[2]
+      value: Maybe you could help, you like, definitely helped me man. Big time.
       objectReference: {fileID: 0}
     - target: {fileID: 4526362988305994859, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
       propertyPath: notStartedDialogue.Array.data[0]
@@ -389,12 +412,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4526362988305994859, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
       propertyPath: notStartedDialogue.Array.data[1]
-      value: I don't even know what house this is... Can you like, help me with something?
-        I need a few mushrooms, like 3 of them.
+      value: The forest is whispering secrets, man. But the trees... they're kinda
+        stuck on mute. There are these righteous mushrooms though....
       objectReference: {fileID: 0}
     - target: {fileID: 4526362988305994859, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
       propertyPath: notStartedDialogue.Array.data[2]
-      value: I know they grow east of here, bring me a few mushrooms please.
+      value: They make the trees dance. You think, you could, like, bring me three
+        of them?
       objectReference: {fileID: 0}
     - target: {fileID: 4733493404853701901, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
       propertyPath: m_Name
@@ -407,6 +431,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4733493404853701901, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1533844725}
+    - targetCorrespondingSourceObject: {fileID: 4733493404853701901, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1533844726}
   m_SourcePrefab: {fileID: 100100000, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
 --- !u!1001 &760418336
 PrefabInstance:
@@ -701,7 +728,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -717,6 +744,41 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.48, y: 0.48}
   m_EdgeRadius: 0
+--- !u!58 &1533844726
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533844724}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.036319297}
+  serializedVersion: 2
+  m_Radius: 0.2763193
 --- !u!1 &1661233516 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8662613959861780690, guid: ce37bfec5f30242458355d0a5adc62b8, type: 3}

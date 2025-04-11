@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public GameObject gameplayPanel;
     public GameObject pausePanel;
     public GameObject questPanel;
+    public GameObject endPanel;
     public TextMeshProUGUI interactionText;
     public TextMeshProUGUI interactionPrompt;
     public Inventory inventory;
@@ -42,6 +43,12 @@ public class UIManager : MonoBehaviour
     {
         DisableAllMenuUI();
         questPanel.SetActive(true);
+    }
+
+    public void EnableEndMenuUI()
+    {
+        DisableAllMenuUI();
+        endPanel.SetActive(true);
     }
 
     public void DisableAllMenuUI()

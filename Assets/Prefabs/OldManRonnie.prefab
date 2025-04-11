@@ -115,7 +115,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -149,15 +149,34 @@ MonoBehaviour:
   itemId: 
   sentences:
   - 
+  cantStartDialogue:
+  - Hello young lad. Do you like my farm? I grew everything by myself.
+  - I know it's not much, but it's all I need. I just wish those damn rabbits would
+    stop eating my flowers is all.
   notStartedDialogue:
-  - Hey there young whipper snapper! Those pesky rabbits have been eating my pretty
-    flowers! Go squish them.
+  - 'Oh it''s you. Heard you were helping that... that wizard. '
+  - Well, while he's playing with his potions, my garden's being ravaged! Look at
+    it! It's an outrage!
+  - You wouldn't happen to have seen any shifty-eyed rabbits around, have ya? If
+    so squish them for me!
   inPogressDialogue:
-  - You haven't squished those rabbits yet? It's not hard, they're only rabbits Get
-    going young buck!
+  - Well? Did you scare off those fluffy fiends? Or are they still having a botanical
+    buffet in my backyard?
+  - Those rabbits aren't going to squish themselves, you know!
   completionDialogue:
-  - 'Thank you for dealing with that rabbit problem. I''ve noticed some of my purple
-    violets have been eaten too! '
+  - Hmph. About time. My garden can finally breathe a sigh of relief.
+  - Though I did see a rather suspicious-looking individual lurking about earlier...
+    but never mind that now.
+  - Right, those pesky critters are dealt with. But you know, all this strange business...
+    That wizard keeps to himself, doesn't he?
+  - 'There''s a woman down by the old mill, Agnes. She''s got a sharp mind and doesn''t
+    trust that fancy magic one bit. '
+  - Maybe she's onto something? You should go see her perhaps.
   afterDialogue:
-  - Now that those rabbits are gone, I'll regrow my garden!
+  - Now that those pesky critters are dealt with, I can tend to my garden!
+  - I'm sure glad you gave those rabbits a 'talking' to!
+  - See you around I guess.
   questType: 3
+  canPickup: 0
+  canAttack: 0
+  requiredQuestIndex: 3

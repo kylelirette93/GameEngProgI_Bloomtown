@@ -40610,7 +40610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5632129167852796608, guid: 5a2f7611dca571f4aa0ddee5ff79f989, type: 3}
       propertyPath: spawnPoint
-      value: ReturnPoint
+      value: ReturnFromWizardHouse
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -41782,6 +41782,7 @@ MonoBehaviour:
   questReward: {fileID: 0}
   itemId: 
   sentences: []
+  cantStartDialogue: []
   notStartedDialogue: []
   inPogressDialogue: []
   completionDialogue: []
@@ -41789,6 +41790,7 @@ MonoBehaviour:
   questType: 0
   canPickup: 0
   canAttack: 0
+  requiredQuestIndex: 0
 --- !u!61 &948718295
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -41984,6 +41986,102 @@ PrefabInstance:
         peculiar fellow...
       objectReference: {fileID: 0}
     - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: requiredQuestIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: afterDialogue.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: afterDialogue.Array.data[0]
+      value: 'Potion brewing is hard work, you know. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: afterDialogue.Array.data[1]
+      value: A brilliant mind needs plenty of speciman's to do the more 'handy' things.
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: afterDialogue.Array.data[2]
+      value: You should probably speak to Ronnie, not me!
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: cantStartDialogue.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: inPogressDialogue.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: completionDialogue.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: notStartedDialogue.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: cantStartDialogue.Array.data[0]
+      value: Welcome to my humble abode? And you are?
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: cantStartDialogue.Array.data[1]
+      value: Ahh the one without a name. What brings you to my house? Kind of wierd
+        to just go visiting people's houses don't you think?
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: inPogressDialogue.Array.data[0]
+      value: 'Close, but no floral cigar! '
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: inPogressDialogue.Array.data[1]
+      value: Two out of three won't magically transmute into a completed potion,
+        you know.
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: inPogressDialogue.Array.data[2]
+      value: Find the others, do haste.
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: completionDialogue.Array.data[0]
+      value: 'Excellent work! You have a keen eye for botanical beauty. Or perhaps
+        you just picked the first three you saw. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: completionDialogue.Array.data[1]
+      value: Either way, please hand them over!
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: completionDialogue.Array.data[2]
+      value: Now while I commence the delicate process of... flower mashing... there's
+        something else that's been bothering me.
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: completionDialogue.Array.data[3]
+      value: Old Man Ronnie to the east has been making a racket, he's saying someone
+        is making a racket about his blooms.
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: completionDialogue.Array.data[4]
+      value: Go see what's got his knickers in a twist, will you? He keeps interrupting
+        my magical musings.
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: notStartedDialogue.Array.data[0]
+      value: 'Ah yes, another cog in the grand alchemical machine! '
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: notStartedDialogue.Array.data[1]
+      value: I'm brewing a magical concontion that requires three vibrant flowers,
+        the purple kind!
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: notStartedDialogue.Array.data[2]
+      value: Go forth and procure these for me, I've heard they grow east of my house!
+        At some point you will be rewarded with a great revelation!
+      objectReference: {fileID: 0}
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
       propertyPath: quest.inProgressDialogue.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -42035,6 +42133,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC_Wizard
       objectReference: {fileID: 0}
+    - target: {fileID: 1828163529220152242, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7929156
+      objectReference: {fileID: 0}
+    - target: {fileID: 1828163529220152242, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.03269531
+      objectReference: {fileID: 0}
+    - target: {fileID: 1828163529220152242, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7830780706160105887, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.25
@@ -42082,8 +42192,51 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1267820495338534734, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4545424958824871566}
   m_SourcePrefab: {fileID: 100100000, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+--- !u!1 &4545424958824871565 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1267820495338534734, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+  m_PrefabInstance: {fileID: 4545424958824871564}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &4545424958824871566
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4545424958824871565}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.084305964}
+  serializedVersion: 2
+  m_Radius: 0.58430636
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

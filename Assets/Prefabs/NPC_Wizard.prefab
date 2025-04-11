@@ -143,16 +143,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 918c649b7faf5914885162c9d1d0354d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 4
   itemData: {fileID: 0}
+  questReward: {fileID: 0}
   itemId: 
   sentences:
   - "Hello traveler! I need you to gather 5 purple violets.\t"
+  cantStartDialogue:
+  - Welcome to my humble abode? And you are?
+  - Ahh the one without a name. What brings you to my house? Kind of wierd to just
+    go visiting people's houses don't you think?
   notStartedDialogue:
-  - Hello, I need ingredients for a potion I'm making, can you help me?
+  - 'Ah yes, another cog in the grand alchemical machine! '
+  - I'm brewing a magical concontion that requires three vibrant flowers, the purple
+    kind!
+  - Go forth and procure these for me, I've heard they grow east of my house! At
+    some point you will be rewarded with a great revelation!
   inPogressDialogue:
-  - Have you found my flowers yet? Keep looking for them.
+  - 'Close, but no floral cigar! '
+  - I can't magically transmute a potion out of nothingness you know!
+  - Find the flowers, do haste.
   completionDialogue:
-  - Thank you for finding my flowers, you've been a big help!
+  - Excellent work! You have a keen eye for botanical beauty. Or perhaps you just
+    picked the first three you saw.
+  - Either way, please hand them over!
+  - Now while I commence the delicate process of... flower mashing... there's something
+    else that's been bothering me.
+  - "Old Man Ronnie to the east has been making a racket about his garden. Seems
+    someone's been helping themselves to his blooms. \r\nGo see what's got his knickers
+    in a twist, will you?"
+  - He keeps interrupting my magical musings!
   afterDialogue:
-  - Random gibberish gibberish.
+  - Potion brewing is hard work, you know.
+  - A brilliant mind needs plenty of speciman's to do the more 'handy' things.
+  - You should probably speak to Ronnie, not me!
+  questType: 0
+  canPickup: 0
+  canAttack: 0
+  requiredQuestIndex: 2

@@ -8,4 +8,5 @@ public class ProgressTracker : MonoBehaviour
     public int flowersPicked = 0;
     public int applesPicked = 0;
     public int rabbitsHunted = 0;
+    public bool wizardReturnedTo = false;
 }

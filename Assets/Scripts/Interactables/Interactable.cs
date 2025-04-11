@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum InteractableType
 {
@@ -8,7 +9,7 @@ public enum InteractableType
     Take,
     Info,
     Dialogue,
-    Attack
+    Attack,
 }
 public class Interactable : MonoBehaviour, IInteractable
 {
@@ -22,18 +23,21 @@ public class Interactable : MonoBehaviour, IInteractable
 
     [Header("Dialogue Settings")]
     [TextArea] public string[] sentences;
+    [TextArea] public string[] cantStartDialogue;
     [TextArea] public string[] notStartedDialogue;
     [TextArea] public string[] inPogressDialogue;
     [TextArea] public string[] completionDialogue;
     [TextArea] public string[] afterDialogue;
     DialogueManager dialogueManager;
     private bool dialogueStarted = false;
+    public string npcName;
 
 
     QuestManager questManager;
     public QuestType questType;
     public bool canPickup = false;
     public bool canAttack = false;
+    public int requiredQuestIndex;
 
     public InteractableType InteractionType => type;
 
@@ -101,27 +105,6 @@ public class Interactable : MonoBehaviour, IInteractable
     {
         switch (questType)
         {
-            case QuestType.TakeFlower:
-                if (questManager.takeFlowerQuestStatus == QuestManager.TakeFlowerQuestStatus.NotStarted)
-                {
-                    sentences = notStartedDialogue;
-                    questManager.takeFlowerQuestStatus = QuestManager.TakeFlowerQuestStatus.InProgress;
-                }
-                else if (questManager.takeFlowerQuestStatus == QuestManager.TakeFlowerQuestStatus.InProgress)
-                {
-                    sentences = inPogressDialogue;
-                }
-                else if (questManager.takeFlowerQuestStatus == QuestManager.TakeFlowerQuestStatus.Completed)
-                {
-                    sentences = completionDialogue;
-                    inventory.RemoveAll();
-                    questManager.takeFlowerQuestStatus = QuestManager.TakeFlowerQuestStatus.After;
-                }
-                else if (questManager.takeFlowerQuestStatus == QuestManager.TakeFlowerQuestStatus.After)
-                {
-                    sentences = afterDialogue;
-                }
-                break;
             case QuestType.TakeMushrooms:
                 if (questManager.takeMushroomsQuestStatus == QuestManager.TakeMushroomsQuestStatus.NotStarted)
                 {
@@ -136,6 +119,7 @@ public class Interactable : MonoBehaviour, IInteractable
                 {
                     sentences = completionDialogue;
                     inventory.RemoveAll();
+                    questManager.CurrentQuestIndex++;
                     questManager.takeMushroomsQuestStatus = QuestManager.TakeMushroomsQuestStatus.After;
                 }
                 else if (questManager.takeMushroomsQuestStatus == QuestManager.TakeMushroomsQuestStatus.After)
@@ -143,8 +127,17 @@ public class Interactable : MonoBehaviour, IInteractable
                     sentences = afterDialogue;
                 }
                 break;
-                case QuestType.PickApples:
-                if (questManager.pickApplesQuestStatus == QuestManager.PickApplesQuestStatus.NotStarted)
+            case QuestType.PickApples:
+                if (questManager.CurrentQuestIndex != requiredQuestIndex && questManager.pickApplesQuestStatus != QuestManager.PickApplesQuestStatus.After)
+                {
+                    sentences = cantStartDialogue;
+                    questManager.pickApplesQuestStatus = QuestManager.PickApplesQuestStatus.CantStart;
+                }
+                if (questManager.CurrentQuestIndex == requiredQuestIndex && questManager.pickApplesQuestStatus == QuestManager.PickApplesQuestStatus.CantStart)
+                {
+                    questManager.pickApplesQuestStatus = QuestManager.PickApplesQuestStatus.NotStarted;
+                }
+                if (questManager.pickApplesQuestStatus == QuestManager.PickApplesQuestStatus.NotStarted && questManager.CurrentQuestIndex == requiredQuestIndex)
                 {
                     sentences = notStartedDialogue;
                     questManager.pickApplesQuestStatus = QuestManager.PickApplesQuestStatus.InProgress;
@@ -157,6 +150,7 @@ public class Interactable : MonoBehaviour, IInteractable
                 {
                     sentences = completionDialogue;
                     inventory.RemoveAll();
+                    questManager.CurrentQuestIndex++;
                     questManager.pickApplesQuestStatus = QuestManager.PickApplesQuestStatus.After;
                 }
                 else if (questManager.pickApplesQuestStatus == QuestManager.PickApplesQuestStatus.After)
@@ -164,8 +158,48 @@ public class Interactable : MonoBehaviour, IInteractable
                     sentences = afterDialogue;
                 }
                 break;
-                case QuestType.HuntRabbits:
-                if (questManager.huntRabbitsQuestStatus == QuestManager.HuntRabbitsQuestStatus.NotStarted)
+            case QuestType.TakeFlower:
+                if (questManager.CurrentQuestIndex != requiredQuestIndex && questManager.takeFlowerQuestStatus != QuestManager.TakeFlowerQuestStatus.After)
+                {
+                    sentences = cantStartDialogue;
+                    questManager.takeFlowerQuestStatus = QuestManager.TakeFlowerQuestStatus.CantStart;
+                }
+                if (questManager.CurrentQuestIndex == requiredQuestIndex && questManager.takeFlowerQuestStatus == QuestManager.TakeFlowerQuestStatus.CantStart)
+                {
+                    questManager.takeFlowerQuestStatus = QuestManager.TakeFlowerQuestStatus.NotStarted;
+                }
+                if (questManager.takeFlowerQuestStatus == QuestManager.TakeFlowerQuestStatus.NotStarted && questManager.CurrentQuestIndex == requiredQuestIndex)
+                {
+                    sentences = notStartedDialogue;
+                    questManager.takeFlowerQuestStatus = QuestManager.TakeFlowerQuestStatus.InProgress;
+                }
+                else if (questManager.takeFlowerQuestStatus == QuestManager.TakeFlowerQuestStatus.InProgress)
+                {
+                    sentences = inPogressDialogue;
+                }
+                else if (questManager.takeFlowerQuestStatus == QuestManager.TakeFlowerQuestStatus.Completed)
+                {
+                    sentences = completionDialogue;
+                    inventory.RemoveAll();
+                    questManager.CurrentQuestIndex++;
+                    questManager.takeFlowerQuestStatus = QuestManager.TakeFlowerQuestStatus.After;
+                }
+                else if (questManager.takeFlowerQuestStatus == QuestManager.TakeFlowerQuestStatus.After)
+                {
+                    sentences = afterDialogue;
+                }
+                break;
+            case QuestType.HuntRabbits:
+                if (questManager.CurrentQuestIndex != requiredQuestIndex && questManager.huntRabbitsQuestStatus != QuestManager.HuntRabbitsQuestStatus.After)
+                {
+                    sentences = cantStartDialogue;
+                    questManager.huntRabbitsQuestStatus = QuestManager.HuntRabbitsQuestStatus.CantStart;
+                }
+                if (questManager.CurrentQuestIndex == requiredQuestIndex && questManager.huntRabbitsQuestStatus == QuestManager.HuntRabbitsQuestStatus.CantStart)
+                {
+                    questManager.huntRabbitsQuestStatus = QuestManager.HuntRabbitsQuestStatus.NotStarted;
+                }
+                    if (questManager.huntRabbitsQuestStatus == QuestManager.HuntRabbitsQuestStatus.NotStarted && questManager.CurrentQuestIndex == requiredQuestIndex)
                 {
                     sentences = notStartedDialogue;
                     questManager.huntRabbitsQuestStatus = QuestManager.HuntRabbitsQuestStatus.InProgress;
@@ -177,6 +211,7 @@ public class Interactable : MonoBehaviour, IInteractable
                 else if (questManager.huntRabbitsQuestStatus == QuestManager.HuntRabbitsQuestStatus.Completed)
                 {
                     sentences = completionDialogue;
+                    questManager.CurrentQuestIndex++;
                     questManager.huntRabbitsQuestStatus = QuestManager.HuntRabbitsQuestStatus.After;
                 }
                 else if (questManager.huntRabbitsQuestStatus == QuestManager.HuntRabbitsQuestStatus.After)
@@ -184,7 +219,36 @@ public class Interactable : MonoBehaviour, IInteractable
                     sentences = afterDialogue;
                 }
                 break;
-
+            case QuestType.ReturnToWizard:
+                if (questManager.CurrentQuestIndex != requiredQuestIndex && questManager.returnToWizardQuestStatus != QuestManager.ReturnToWizardQuestStatus.After)
+                {
+                    sentences = cantStartDialogue;
+                    questManager.returnToWizardQuestStatus = QuestManager.ReturnToWizardQuestStatus.CantStart;
+                }
+                if (questManager.CurrentQuestIndex == requiredQuestIndex && questManager.returnToWizardQuestStatus == QuestManager.ReturnToWizardQuestStatus.CantStart)
+                {
+                    questManager.returnToWizardQuestStatus = QuestManager.ReturnToWizardQuestStatus.NotStarted;
+                }
+                if (questManager.returnToWizardQuestStatus == QuestManager.ReturnToWizardQuestStatus.NotStarted && questManager.CurrentQuestIndex == requiredQuestIndex)
+                {
+                    sentences = notStartedDialogue;
+                    questManager.returnToWizardQuestStatus = QuestManager.ReturnToWizardQuestStatus.InProgress;
+                }
+                else if (questManager.returnToWizardQuestStatus == QuestManager.ReturnToWizardQuestStatus.InProgress)
+                {
+                    sentences = inPogressDialogue;
+                }
+                else if (questManager.returnToWizardQuestStatus == QuestManager.ReturnToWizardQuestStatus.Completed)
+                {
+                    sentences = completionDialogue;
+                    questManager.CurrentQuestIndex++;
+                    questManager.returnToWizardQuestStatus = QuestManager.ReturnToWizardQuestStatus.After;
+                }
+                else if (questManager.returnToWizardQuestStatus == QuestManager.ReturnToWizardQuestStatus.After)
+                {
+                    sentences = afterDialogue;
+                }
+                break;
         }
         if (dialogueStarted)
         {

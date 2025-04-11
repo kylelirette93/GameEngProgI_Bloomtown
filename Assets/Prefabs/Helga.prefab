@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9105181356560487381}
   m_Layer: 0
   m_Name: Helga
-  m_TagString: Untagged
+  m_TagString: InteractObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,11 +143,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 918c649b7faf5914885162c9d1d0354d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 4
   itemData: {fileID: 0}
   questReward: {fileID: 0}
   itemId: 
   sentences: []
+  cantStartDialogue: []
   notStartedDialogue:
   - 'Hello I''m Helga! I''m helping the wizard make a pie, but he needs 3 apples. '
   - He said if I fetch them for him, he'll make me 10 years younger!
@@ -162,6 +163,7 @@ MonoBehaviour:
   afterDialogue:
   - Have you met the wizard? He's in that house right over there!
   - Some say he's evil, but he seems alright.
-  questType: 0
+  questType: 4
   canPickup: 0
   canAttack: 0
+  requiredQuestIndex: 4

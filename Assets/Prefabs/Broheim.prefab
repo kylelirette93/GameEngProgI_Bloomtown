@@ -97,11 +97,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 918c649b7faf5914885162c9d1d0354d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 4
   itemData: {fileID: 0}
   questReward: {fileID: 0}
   itemId: 
   sentences: []
+  cantStartDialogue: []
   notStartedDialogue:
   - 'Hey, I need your help! Yeah you, can you help me find my '
   inPogressDialogue: []
@@ -110,3 +111,4 @@ MonoBehaviour:
   questType: 0
   canPickup: 0
   canAttack: 0
+  requiredQuestIndex: 0

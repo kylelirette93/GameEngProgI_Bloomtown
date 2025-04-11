@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9e5a6163961f4d749bb6a62317855ac2
+guid: 49ab6e33f570b7a47ab64ea448f55e88
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -93,17 +93,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ronnie_0
+      name: Agnes_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 4
         y: 0
-        width: 32
-        height: 32
+        width: 39
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76db6f9ecee8b984d915c8153ed716c2
-      internalID: 522205725
+      spriteID: ea09ba6a3b1ca4f42981e0538b9713d9
+      internalID: 755623599
       vertices: []
       indices: 
       edges: []
@@ -128,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Ronnie_0: 522205725
+      Agnes_0: 755623599
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
