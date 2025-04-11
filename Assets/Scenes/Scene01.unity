@@ -339,6 +339,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4526362988305994859, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
+      propertyPath: type
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526362988305994859, guid: 60773ef05e6315641bc1d10061625f50, type: 3}
       propertyPath: quest
       value: Flint Locked
       objectReference: {fileID: 0}
@@ -560,6 +564,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4966739967386354891, guid: ce37bfec5f30242458355d0a5adc62b8, type: 3}
+      propertyPath: type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4966739967386354891, guid: ce37bfec5f30242458355d0a5adc62b8, type: 3}
       propertyPath: itemId
       value: Mushroom
       objectReference: {fileID: 0}
@@ -630,6 +638,10 @@ PrefabInstance:
     - target: {fileID: 1758354048544340224, guid: ce37bfec5f30242458355d0a5adc62b8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4966739967386354891, guid: ce37bfec5f30242458355d0a5adc62b8, type: 3}
+      propertyPath: type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4966739967386354891, guid: ce37bfec5f30242458355d0a5adc62b8, type: 3}
       propertyPath: itemId
@@ -802,6 +814,10 @@ PrefabInstance:
     - target: {fileID: 1758354048544340224, guid: ce37bfec5f30242458355d0a5adc62b8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4966739967386354891, guid: ce37bfec5f30242458355d0a5adc62b8, type: 3}
+      propertyPath: type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4966739967386354891, guid: ce37bfec5f30242458355d0a5adc62b8, type: 3}
       propertyPath: itemId

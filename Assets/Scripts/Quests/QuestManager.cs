@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum QuestType { PickFlower, PickMushrooms, TalkToElders, HuntRabbits, }
+public enum QuestType { TakeFlower, TakeMushrooms, PickApples, HuntRabbits, }
 public class QuestManager : MonoBehaviour
 {
     Inventory inventory;
@@ -11,14 +11,14 @@ public class QuestManager : MonoBehaviour
         inventory = GameManager.Instance.UIManager.inventory;
         progressTracker = GameManager.Instance.progressTracker;
     }
-    public enum PickFlowerQuestStatus { NotStarted, InProgress, Completed, After }
-    public PickFlowerQuestStatus pickFlowerQuestStatus = PickFlowerQuestStatus.NotStarted;
+    public enum TakeFlowerQuestStatus { NotStarted, InProgress, Completed, After }
+    public TakeFlowerQuestStatus takeFlowerQuestStatus = TakeFlowerQuestStatus.NotStarted;
 
-    public enum PickMushroomsQuestStatus { NotStarted, InProgress, Completed, After }
-    public PickMushroomsQuestStatus pickMushroomsQuestStatus = PickMushroomsQuestStatus.NotStarted;
+    public enum TakeMushroomsQuestStatus { NotStarted, InProgress, Completed, After }
+    public TakeMushroomsQuestStatus takeMushroomsQuestStatus = TakeMushroomsQuestStatus.NotStarted;
 
-    public enum TalkToEldersQuestStatus { NotStarted, InProgress, Completed, After }
-    public TalkToEldersQuestStatus talkToEldersQuestStatus = TalkToEldersQuestStatus.NotStarted;
+    public enum PickApplesQuestStatus { NotStarted, InProgress, Completed, After }
+    public PickApplesQuestStatus pickApplesQuestStatus = PickApplesQuestStatus.NotStarted;
 
     public enum HuntRabbitsQuestStatus { NotStarted, InProgress, Completed, After }
     public HuntRabbitsQuestStatus huntRabbitsQuestStatus = HuntRabbitsQuestStatus.NotStarted;
@@ -27,15 +27,15 @@ public class QuestManager : MonoBehaviour
     {
         if (progressTracker.flowersPicked >= 3)
         {
-            pickFlowerQuestStatus = PickFlowerQuestStatus.Completed;
+            takeFlowerQuestStatus = TakeFlowerQuestStatus.Completed;
         }
         if (progressTracker.mushroomsPicked >= 3)         
         {
-            pickMushroomsQuestStatus = PickMushroomsQuestStatus.Completed;
+            takeMushroomsQuestStatus = TakeMushroomsQuestStatus.Completed;
         }
-        if (progressTracker.eldersTalkedTo >= 3)
+        if (progressTracker.applesPicked >= 3)
         {
-            talkToEldersQuestStatus = TalkToEldersQuestStatus.Completed;
+            pickApplesQuestStatus = PickApplesQuestStatus.Completed;
         }
         if (progressTracker.rabbitsHunted >= 3)
         {

@@ -41779,12 +41779,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   itemData: {fileID: 11400000, guid: a280820744e2c7d438f2a7a8bddf3cfa, type: 2}
+  questReward: {fileID: 0}
   itemId: 
   sentences: []
-  completedSentences: []
-  quest: 
-  quest2: 
-  npcName: 
+  notStartedDialogue: []
+  inPogressDialogue: []
+  completionDialogue: []
+  afterDialogue: []
+  questType: 0
+  canPickup: 0
+  canAttack: 0
 --- !u!61 &948718295
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -41962,6 +41966,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
+      propertyPath: type
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 461477954985743632, guid: ec55813b7db3abd4380c351817e7b9ce, type: 3}
       propertyPath: quest2
       value: Cash Money

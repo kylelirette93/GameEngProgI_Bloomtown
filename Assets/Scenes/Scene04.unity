@@ -7635,6 +7635,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1041459563174866038, guid: 89f4441f001f3ab4b88e747f359f6646, type: 3}
+      propertyPath: type
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1041459563174866038, guid: 89f4441f001f3ab4b88e747f359f6646, type: 3}
+      propertyPath: questType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5962280546919086338, guid: 89f4441f001f3ab4b88e747f359f6646, type: 3}
       propertyPath: m_Name
       value: Rabbit (1)
@@ -7711,6 +7719,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PurpleFlower (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1619942051861670061, guid: da1a345666496f548987d1b07fb2a894, type: 3}
+      propertyPath: type
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5851262116592882880, guid: da1a345666496f548987d1b07fb2a894, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.97
@@ -7764,6 +7776,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1041459563174866038, guid: 89f4441f001f3ab4b88e747f359f6646, type: 3}
+      propertyPath: type
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1041459563174866038, guid: 89f4441f001f3ab4b88e747f359f6646, type: 3}
+      propertyPath: questType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5962280546919086338, guid: 89f4441f001f3ab4b88e747f359f6646, type: 3}
       propertyPath: m_Name
       value: Rabbit (2)
@@ -7839,6 +7859,10 @@ PrefabInstance:
     - target: {fileID: 923074680873451506, guid: da1a345666496f548987d1b07fb2a894, type: 3}
       propertyPath: m_Name
       value: PurpleFlower (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619942051861670061, guid: da1a345666496f548987d1b07fb2a894, type: 3}
+      propertyPath: type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5851262116592882880, guid: da1a345666496f548987d1b07fb2a894, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8132,6 +8156,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1041459563174866038, guid: 89f4441f001f3ab4b88e747f359f6646, type: 3}
+      propertyPath: type
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1041459563174866038, guid: 89f4441f001f3ab4b88e747f359f6646, type: 3}
+      propertyPath: questType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5962280546919086338, guid: 89f4441f001f3ab4b88e747f359f6646, type: 3}
       propertyPath: m_Name
       value: Rabbit
@@ -8207,6 +8239,10 @@ PrefabInstance:
     - target: {fileID: 923074680873451506, guid: da1a345666496f548987d1b07fb2a894, type: 3}
       propertyPath: m_Name
       value: PurpleFlower (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619942051861670061, guid: da1a345666496f548987d1b07fb2a894, type: 3}
+      propertyPath: type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5851262116592882880, guid: da1a345666496f548987d1b07fb2a894, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8341,6 +8377,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PurpleFlower (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1619942051861670061, guid: da1a345666496f548987d1b07fb2a894, type: 3}
+      propertyPath: type
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5851262116592882880, guid: da1a345666496f548987d1b07fb2a894, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.26
@@ -8398,6 +8438,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PurpleFlower
       objectReference: {fileID: 0}
+    - target: {fileID: 1619942051861670061, guid: da1a345666496f548987d1b07fb2a894, type: 3}
+      propertyPath: type
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5851262116592882880, guid: da1a345666496f548987d1b07fb2a894, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.54
@@ -8451,6 +8495,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4022521683954998353, guid: b00ea6cc05e73b74a87377ed16c1ea2d, type: 3}
+      propertyPath: type
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5991398785162810069, guid: b00ea6cc05e73b74a87377ed16c1ea2d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.98

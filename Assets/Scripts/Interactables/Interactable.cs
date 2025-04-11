@@ -1,9 +1,11 @@
+using UnityEditor;
 using UnityEngine;
 
 public enum InteractableType
 {
     Nothing,
     Pickup,
+    Take,
     Info,
     Dialogue,
     Attack
@@ -51,7 +53,11 @@ public class Interactable : MonoBehaviour, IInteractable
             case InteractableType.Nothing:
                 Nothing();
                 break;
+            case InteractableType.Take:
+                Take();
+                break;
             case InteractableType.Pickup:
+                // Taking things FROM an object, such as tree etc.
                 Pickup();
                 break;
             case InteractableType.Info:
@@ -77,7 +83,7 @@ public class Interactable : MonoBehaviour, IInteractable
     }
 
 
-    public void Pickup()
+    public void Take()
     {
         if (inventory == null || itemData == null) return;
         inventory.AddItem(itemData, 1);
@@ -85,68 +91,75 @@ public class Interactable : MonoBehaviour, IInteractable
         
     }
 
+    public void Pickup()
+    {
+        if (inventory == null || itemData == null) return;
+        inventory.AddItem(itemData, 1);
+    }
+
     public void Dialogue()
     {
         switch (questType)
         {
-            case QuestType.PickFlower:
-                if (questManager.pickFlowerQuestStatus == QuestManager.PickFlowerQuestStatus.NotStarted)
+            case QuestType.TakeFlower:
+                if (questManager.takeFlowerQuestStatus == QuestManager.TakeFlowerQuestStatus.NotStarted)
                 {
                     sentences = notStartedDialogue;
-                    questManager.pickFlowerQuestStatus = QuestManager.PickFlowerQuestStatus.InProgress;
+                    questManager.takeFlowerQuestStatus = QuestManager.TakeFlowerQuestStatus.InProgress;
                 }
-                else if (questManager.pickFlowerQuestStatus == QuestManager.PickFlowerQuestStatus.InProgress)
+                else if (questManager.takeFlowerQuestStatus == QuestManager.TakeFlowerQuestStatus.InProgress)
                 {
                     sentences = inPogressDialogue;
                 }
-                else if (questManager.pickFlowerQuestStatus == QuestManager.PickFlowerQuestStatus.Completed)
+                else if (questManager.takeFlowerQuestStatus == QuestManager.TakeFlowerQuestStatus.Completed)
                 {
                     sentences = completionDialogue;
                     inventory.RemoveAll();
-                    questManager.pickFlowerQuestStatus = QuestManager.PickFlowerQuestStatus.After;
+                    questManager.takeFlowerQuestStatus = QuestManager.TakeFlowerQuestStatus.After;
                 }
-                else if (questManager.pickFlowerQuestStatus == QuestManager.PickFlowerQuestStatus.After)
+                else if (questManager.takeFlowerQuestStatus == QuestManager.TakeFlowerQuestStatus.After)
                 {
                     sentences = afterDialogue;
                 }
                 break;
-            case QuestType.PickMushrooms:
-                if (questManager.pickMushroomsQuestStatus == QuestManager.PickMushroomsQuestStatus.NotStarted)
+            case QuestType.TakeMushrooms:
+                if (questManager.takeMushroomsQuestStatus == QuestManager.TakeMushroomsQuestStatus.NotStarted)
                 {
                     sentences = notStartedDialogue;
-                    questManager.pickMushroomsQuestStatus = QuestManager.PickMushroomsQuestStatus.InProgress;
+                    questManager.takeMushroomsQuestStatus = QuestManager.TakeMushroomsQuestStatus.InProgress;
                 }
-                else if (questManager.pickMushroomsQuestStatus == QuestManager.PickMushroomsQuestStatus.InProgress)
+                else if (questManager.takeMushroomsQuestStatus == QuestManager.TakeMushroomsQuestStatus.InProgress)
                 {
                     sentences = inPogressDialogue;
                 }
-                else if (questManager.pickMushroomsQuestStatus == QuestManager.PickMushroomsQuestStatus.Completed)
+                else if (questManager.takeMushroomsQuestStatus == QuestManager.TakeMushroomsQuestStatus.Completed)
                 {
                     sentences = completionDialogue;
                     inventory.RemoveAll();
-                    questManager.pickMushroomsQuestStatus = QuestManager.PickMushroomsQuestStatus.After;
+                    questManager.takeMushroomsQuestStatus = QuestManager.TakeMushroomsQuestStatus.After;
                 }
-                else if (questManager.pickMushroomsQuestStatus == QuestManager.PickMushroomsQuestStatus.After)
+                else if (questManager.takeMushroomsQuestStatus == QuestManager.TakeMushroomsQuestStatus.After)
                 {
                     sentences = afterDialogue;
                 }
                 break;
-                case QuestType.TalkToElders:
-                if (questManager.talkToEldersQuestStatus == QuestManager.TalkToEldersQuestStatus.NotStarted)
+                case QuestType.PickApples:
+                if (questManager.pickApplesQuestStatus == QuestManager.PickApplesQuestStatus.NotStarted)
                 {
                     sentences = notStartedDialogue;
-                    questManager.talkToEldersQuestStatus = QuestManager.TalkToEldersQuestStatus.InProgress;
+                    questManager.pickApplesQuestStatus = QuestManager.PickApplesQuestStatus.InProgress;
                 }
-                else if (questManager.talkToEldersQuestStatus == QuestManager.TalkToEldersQuestStatus.InProgress)
+                else if (questManager.pickApplesQuestStatus == QuestManager.PickApplesQuestStatus.InProgress)
                 {
                     sentences = inPogressDialogue;
                 }
-                else if (questManager.talkToEldersQuestStatus == QuestManager.TalkToEldersQuestStatus.Completed)
+                else if (questManager.pickApplesQuestStatus == QuestManager.PickApplesQuestStatus.Completed)
                 {
                     sentences = completionDialogue;
-                    questManager.talkToEldersQuestStatus = QuestManager.TalkToEldersQuestStatus.After;
+                    inventory.RemoveAll();
+                    questManager.pickApplesQuestStatus = QuestManager.PickApplesQuestStatus.After;
                 }
-                else if (questManager.talkToEldersQuestStatus == QuestManager.TalkToEldersQuestStatus.After)
+                else if (questManager.pickApplesQuestStatus == QuestManager.PickApplesQuestStatus.After)
                 {
                     sentences = afterDialogue;
                 }

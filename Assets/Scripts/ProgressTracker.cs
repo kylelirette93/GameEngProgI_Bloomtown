@@ -6,6 +6,6 @@ public class ProgressTracker : MonoBehaviour
 {
     public int mushroomsPicked = 0;
     public int flowersPicked = 0;
-    public int eldersTalkedTo = 0;
+    public int applesPicked = 0;
     public int rabbitsHunted = 0;
 }

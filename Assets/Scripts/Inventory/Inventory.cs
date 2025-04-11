@@ -25,6 +25,14 @@ public class Inventory : MonoBehaviour
                 progressTracker.mushroomsPicked += amount;
                 questManager.CheckQuestStatus();
             }
+            if (item.itemName == "Apple")
+            {
+                progressTracker.applesPicked += amount;
+                questManager.CheckQuestStatus();
+            }
+            {
+                
+            }
             items.Add(item);
             inventoryUI.UpdateUI();
         }
